@@ -1,0 +1,40 @@
+{
+  "canonical_state": {
+    "entities": {
+      "Russell Brunson": {
+        "type": "person",
+        "corpus": "russell_brunson",
+        "aliases": [
+          "RB"
+        ]
+      },
+      "Perfect Webinar": {
+        "type": "framework",
+        "corpus": "russell_brunson"
+      },
+      "Dream 100": {
+        "type": "framework",
+        "corpus": "russell_brunson"
+      },
+      "Epiphany Bridge": {
+        "type": "framework",
+        "corpus": "russell_brunson"
+      },
+      "Stack Slide": {
+        "type": "framework",
+        "corpus": "russell_brunson"
+      },
+      "Big Domino": {
+        "type": "concept",
+        "corpus": "russell_brunson"
+      },
+      "Attractive Character": {
+        "type": "concept",
+        "corpus": "russell_brunson"
+      }
+    },
+    "aliases": {},
+    "version": "v1",
+    "last_updated": "2026-03-14T06:29:20.874287"
+  }
+}

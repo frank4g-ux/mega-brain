@@ -1,0 +1,153 @@
+{
+  "narratives_state": {
+    "persons": {
+      "Russell Brunson": {
+        "narrative": "Russell Brunson em Expert Secrets apresenta o sistema completo para transformar conhecimento especializado em negocio escalavel de informacao. O nucleo do sistema e o conceito de Massa em Movimento: um lider carismatico com Personagem Atraente lidera uma causa futura oferecendo uma Nova Oportunidade (nao melhoria). A venda e feita via Perfect Webinar - apresentacao de 90 minutos (60 conteudo + 30 pitch) que derruba o Big Domino identificando e atacando tres Falsas Crencas via Epiphany Bridge Stories. O Stack Slide revela valor 10x o preco antes de revelar o preco. Operacionalmente, o sistema funciona como webinar semanal com ciclo fixo: trafego Seg-Qui, ao vivo Quinta, replay Sex-Dom. Trafego vem do Dream 100 - 100 controladores segmentados em 4 tipos. Para alto ticket (acima de $2.997), a 4-Question Close via telefone complementa o webinar. Filosoficamente: vender e servir, repeticao bate novidade, e automacao so deve vir apos 60+ apresentacoes ao vivo.",
+        "last_updated": "2026-03-14T06:29:20.874287",
+        "scope": "personal",
+        "corpus": "russell_brunson",
+        "insights_included": [
+          "RB036_001",
+          "RB036_002",
+          "RB036_003",
+          "RB036_004",
+          "RB036_005",
+          "RB036_006",
+          "RB036_007",
+          "RB036_008",
+          "RB036_009",
+          "RB036_010",
+          "RB036_011",
+          "RB036_012",
+          "RB036_013",
+          "RB036_014",
+          "RB036_015",
+          "RB036_016",
+          "RB036_017",
+          "RB036_018",
+          "RB036_019",
+          "RB036_020",
+          "RB036_021",
+          "RB036_022",
+          "RB036_023",
+          "RB036_024",
+          "RB036_025",
+          "RB036_026",
+          "RB036_027",
+          "RB036_028",
+          "RB036_029",
+          "RB036_030",
+          "RB036_031",
+          "RB036_032",
+          "RB036_033",
+          "RB036_034",
+          "RB036_035",
+          "RB036_036",
+          "RB036_037",
+          "RB036_038",
+          "RB036_039",
+          "RB036_040",
+          "RB036_041",
+          "RB036_042",
+          "RB036_043",
+          "RB036_044",
+          "RB036_045",
+          "RB036_046",
+          "RB036_047",
+          "RB036_048",
+          "RB036_049",
+          "RB036_050"
+        ],
+        "patterns_identified": [
+          {
+            "pattern": "Nova Oportunidade > Melhoria",
+            "frequency": "recorrente",
+            "evidence": [
+              "FIL-RB036-007",
+              "MM-RB036-004"
+            ]
+          },
+          {
+            "pattern": "Sistema Semanal Fixo",
+            "frequency": "central",
+            "evidence": [
+              "FW-RB036-006",
+              "HEUR-RB036-007"
+            ]
+          },
+          {
+            "pattern": "Historias > Ensinamentos Diretos",
+            "frequency": "recorrente",
+            "evidence": [
+              "MM-RB036-008",
+              "FW-RB036-002"
+            ]
+          }
+        ],
+        "open_loops": [
+          {
+            "question": "Qual o ROI real do Dream 100 vs paid traffic sozinho?",
+            "why_it_matters": "Define alocacao de budget de crescimento"
+          },
+          {
+            "question": "Como adaptar o webinar model para mercado brasileiro?",
+            "why_it_matters": "Taxas de comparecimento e conversao variam por cultura"
+          }
+        ],
+        "tensions": [],
+        "next_questions": [
+          "Quais dos 3 mercados quentes (saude, riqueza, relacionamentos) tem maior potencial para VaiAnuncio?",
+          "Como implementar o ciclo de webinar semanal com trafego brasileiro?"
+        ]
+      }
+    },
+    "themes": {
+      "expert-positioning": {
+        "narrative": "Expert Secrets define posicionamento de especialista via Nova Oportunidade, Personagem Atraente e Causa. O especialista nao vende melhoria - vende transformacao de identidade.",
+        "last_updated": "2026-03-14T06:29:20.874287",
+        "insights_included": [
+          "RB036_001",
+          "RB036_003",
+          "RB036_007",
+          "RB036_041",
+          "RB036_042"
+        ]
+      },
+      "webinar-marketing": {
+        "narrative": "O Perfect Webinar e um sistema completo de conversao: estrutura 60+30, Big Domino, 3 Falsas Crencas, Stack Slide e closes. Metrica-chave: 10% conversao = $1M/ano.",
+        "last_updated": "2026-03-14T06:29:20.874287",
+        "insights_included": [
+          "RB036_023",
+          "RB036_026",
+          "RB036_033",
+          "RB036_034",
+          "RB036_036",
+          "RB036_045"
+        ]
+      },
+      "storytelling": {
+        "narrative": "Brunson sistematiza storytelling em Epiphany Bridge Script (8 partes) + As Duas Jornadas do Heroi. Historias vendem porque contornam ceticismo e criam crenca organicamente.",
+        "last_updated": "2026-03-14T06:29:20.874287",
+        "insights_included": [
+          "RB036_012",
+          "RB036_018",
+          "RB036_032",
+          "RB036_042"
+        ]
+      },
+      "traffic-acquisition": {
+        "narrative": "Trafego e gerenciado via Dream 100 (100 controladores em 4 tipos: email, blog, podcast, social). Metricas-chave: $3-5 por registro, 25% show rate, 5-10% conversao.",
+        "last_updated": "2026-03-14T06:29:20.874287",
+        "insights_included": [
+          "RB036_019",
+          "RB036_021",
+          "RB036_022",
+          "RB036_028",
+          "RB036_039",
+          "RB036_048"
+        ]
+      }
+    },
+    "version": "v1"
+  }
+}

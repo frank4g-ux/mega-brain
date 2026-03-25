@@ -1,4 +1,79 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/update_rb011_rb016.py)",
+      "Read(//c/Users/FranSa/**)",
+      "Bash(dir /s \"C:\\\\Users\\\\FranSa\\\\Downloads\\\\Comandos*DotCom*\")",
+      "Bash(dir /s \"C:\\\\Users\\\\FranSa\\\\Desktop\\\\Comandos*DotCom*\")",
+      "Bash(dir /s \"C:\\\\Users\\\\FranSa\\\\Documents\\\\Comandos*DotCom*\")",
+      "Bash(python -c \":*)",
+      "Bash(pip install python-docx -q)",
+      "Bash(python -c \"import faster_whisper; print\\(''faster-whisper OK''\\)\")",
+      "Bash(where yt-dlp)",
+      "Bash(python -m yt_dlp --version)",
+      "Bash(pip show yt-dlp)",
+      "Bash(pip install yt-dlp -q)",
+      "Bash(python -c \"import yt_dlp; print\\(''yt-dlp OK:'', yt_dlp.version.__version__\\)\")",
+      "Bash(python -c \"import yt_dlp; print\\(''yt-dlp OK''\\)\")",
+      "Bash(python scripts/ingest_dotcom_secrets.py)",
+      "Bash(python scripts/update_rb017_rb035.py)",
+      "Bash(for f in \"f:/FUTURO/mega-brain/inbox/Russell Brunson/BOOK/\"*.txt)",
+      "Bash(do wc -w \"$f\")",
+      "Bash(done)",
+      "Read(//f/FUTURO/mega-brain/**)",
+      "Bash(pip install youtube-transcript-api --quiet)",
+      "Bash(pip install yt-dlp --quiet)",
+      "Bash(python scripts/ingest_jb_captions.py)",
+      "WebFetch(domain:agentskills.ai)",
+      "WebFetch(domain:adskills.com)",
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(python .claude/skills/gemini-fallback/gemini_fetch.py \"https://agentskills.ai/browse\")",
+      "WebFetch(domain:learn.adskills.com)",
+      "WebFetch(domain:udcourse.com)",
+      "WebFetch(domain:www.scribd.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:bizstoke.com)",
+      "WebFetch(domain:www.capitalism.com)",
+      "WebFetch(domain:yaro.blog)",
+      "WebFetch(domain:copychief.com)",
+      "WebFetch(domain:blog.adstage.io)",
+      "WebFetch(domain:www.thinkific.com)",
+      "WebFetch(domain:www.omgcommerce.com)",
+      "Bash(python scripts/scan_jb_channel.py)",
+      "Bash(python scripts/ingest_jb_new_batches.py)",
+      "Bash(python scripts/finalize_jb_batches_11_13.py)",
+      "Bash(python scripts/ingest_jb_gap_batches.py)",
+      "Bash(python scripts/jb_insights_batch5.py)",
+      "Bash(\"f:/FUTURO/mega-brain/inbox/Justin Brooke/YOUTUBE/JB017:*)",
+      "Bash(python scripts/jb_insights_batch6.py)",
+      "Bash(python scripts/finalize_jb_batches_14_17.py)",
+      "Bash(python scripts/ingest_jb_captions.py --list-only)",
+      "Bash(python scripts/jb_channel_scan.py)",
+      "Bash(yt-dlp --flat-playlist --print \"id,title\" --no-warnings --playlist-end 20 \"https://www.youtube.com/@JustinBrooke/videos\")",
+      "Bash(yt-dlp --flat-playlist --print \"id\" --print \"title\" --no-warnings --playlist-end 300 \"https://www.youtube.com/@JustinBrooke/videos\")",
+      "Bash(python scripts/jb_gap_analysis.py)",
+      "Bash(python scripts/ingest_jb_gap2.py)",
+      "Bash(python scripts/jb_insights_batch7.py)",
+      "Bash(python scripts/finalize_jb_batches_18_20.py)",
+      "Bash(python -c \"import faster_whisper; print\\(''ok''\\)\")",
+      "Bash(python scripts/transcribe_warp_video.py)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(chmod 777 *)",
+      "Bash(git push --force *)",
+      "Bash(git push --force)",
+      "Bash(git reset --hard *)",
+      "Bash(npm publish *)",
+      "Bash(npm publish)"
+    ],
+    "additionalDirectories": [
+      "f:\\FUTURO\\mega-brain\\inbox\\Russell Brunson",
+      "f:\\FUTURO\\mega-brain\\agents\\minds",
+      "f:\\FUTURO\\mega-brain\\.claude\\skills"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
@@ -192,18 +267,6 @@
           }
         ]
       }
-    ]
-  },
-  "permissions": {
-    "deny": [
-      "Bash(rm -rf *)",
-      "Bash(sudo *)",
-      "Bash(chmod 777 *)",
-      "Bash(git push --force *)",
-      "Bash(git push --force)",
-      "Bash(git reset --hard *)",
-      "Bash(npm publish *)",
-      "Bash(npm publish)"
     ]
   },
   "statusLine": {

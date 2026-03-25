@@ -148,10 +148,15 @@ Se duas skills têm mesma prioridade → Aplicar em ordem numérica (00, 01, 02.
 | sync-docs | `sync-docs/` | sync, gdrive | MEDIA | NO |
 | talent-agent | `talent-agent/` | talent, rh | MEDIA | NO |
 | verify | `verify/` | verificar, check | MEDIA | NO |
+| landing-page | `landing-page/` | landing page, página de vendas, página de captura, lp, site do cliente, página de conversão, criar página | ALTA | OK |
+| research-first | `research-first/` | pesquisa, benchmark, research, existe no GitHub, melhores práticas, best practices, qual stack, comparar, análise de mercado, deep research | ALTA | OK |
 | verify-6-levels | `verify-6-levels/` | verificar, 6 levels | ALTA | OK |
+| nurture | `nurture/` | nurture, follow-up, sequência, lead frio, retargeting, recuperar lead, WhatsApp nurture | ALTA | OK |
+| proposta | `proposta/` | proposta, orçamento, commercial proposal, pacote, ROI, apresentação comercial | ALTA | OK |
+| onboarding-cliente | `onboarding-cliente/` | onboarding, cliente novo, entrada de cliente, setup cliente, começar projeto | ALTA | OK |
 
-### Total: 37 Skills Ativas (12 core + 25 domain-specific)
-### With proper header: 17/37 (46%) — 20 skills need header update
+### Total: 41 Skills Ativas (12 core + 29 domain-specific)
+### With proper header: 18/38 (47%) — 20 skills need header update
 
 ---
 

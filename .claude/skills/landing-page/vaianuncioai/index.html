@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaiAnuncio — IA de Atendimento 24h para Clínicas e Prestadores</title>
+  <meta name="description" content="Nunca mais perca um lead. IA de atendimento 24h + tráfego pago. Diagnóstico gratuito.">
+  <meta name="facebook-domain-verification" content="v22gbfhu5w2290u1vic15ysxpi7jbq" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T29WB9RX');</script>
+  <!-- Fim Google Tag Manager -->
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1720811912632509');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1720811912632509&ev=PageView&noscript=1"/></noscript>
+  <!-- Fim Meta Pixel -->
+  <!-- Google Ads Conversion -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17806819995"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17806819995');
+  </script>
+  <!-- Fim Google Ads Conversion -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #65c2cd;
+      --teal-dark: #4aa8b4;
+      --dark: #080c10;
+      --card: #0d1117;
+      --border: #1e2a35;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--dark); color:#fff; font-family:'Inter',sans-serif; overflow-x:hidden; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(101,194,205,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(101,194,205,0.04) 1px, transparent 1px);
+      background-size:40px 40px;
+    }
+    .glow-teal  { box-shadow:0 0 40px rgba(101,194,205,0.25); }
+    .glass      { background:rgba(13,17,23,0.7); backdrop-filter:blur(20px); border:1px solid var(--border); }
+    .glass-teal { background:rgba(101,194,205,0.05); backdrop-filter:blur(20px); border:1px solid rgba(101,194,205,0.2); }
+    .teal-gradient { background:linear-gradient(135deg,#65c2cd,#2d8a96); }
+
+    @keyframes pulse-btn {
+      0%  { box-shadow:0 0 0 0 rgba(101,194,205,0.4); }
+      70% { box-shadow:0 0 0 14px rgba(101,194,205,0); }
+      100%{ box-shadow:0 0 0 0 rgba(101,194,205,0); }
+    }
+    @keyframes shimmer {
+      0%  { background-position:-200% center; }
+      100%{ background-position:200% center; }
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .shimmer-text {
+      background:linear-gradient(90deg,#65c2cd 0%,#fff 45%,#65c2cd 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shimmer 3s linear infinite;
+    }
+    .btn-glow { animation:pulse-btn 2s infinite; }
+    .card-hover { transition:transform .3s,box-shadow .3s; }
+    .card-hover:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(101,194,205,0.15); }
+
+    .terminal { background:#060a0f; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+    .terminal-bar { background:#0d1421; padding:11px 18px; display:flex; align-items:center; gap:7px; border-bottom:1px solid var(--border); }
+    .dot { width:11px; height:11px; border-radius:50%; }
+    .dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+    .terminal-body { padding:22px; font-family:'Courier New',monospace; font-size:13px; line-height:2; }
+    .t-prompt { color:var(--teal); }
+    .t-ia     { color:#65c2cd; }
+    .t-ok     { color:#28c840; }
+    .t-dim    { color:#3a4a5a; }
+    .cursor   { display:inline-block; width:8px; height:14px; background:var(--teal); animation:blink 1s infinite; vertical-align:middle; }
+
+    .card-before { background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.2); border-radius:14px; padding:22px; }
+    .card-after  { background:rgba(101,194,205,0.05); border:1px solid rgba(101,194,205,0.25); border-radius:14px; padding:22px; }
+
+    details summary { list-style:none; cursor:pointer; padding:22px 24px; font-weight:700; display:flex; justify-content:space-between; align-items:center; }
+    details summary::-webkit-details-marker { display:none; }
+    .faq-icon { color:var(--teal); font-size:22px; transition:transform .2s; }
+    details[open] .faq-icon { transform:rotate(45deg); }
+    .faq-body { padding:0 24px 22px; color:#6b7280; font-size:14px; line-height:1.8; }
+
+    /* ── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      /* NAV */
+      .nav-links { display:none !important; }
+      .nav-logo  { height:52px !important; }
+      .nav-cta   { font-size:13px !important; padding:9px 16px !important; }
+
+      /* HERO */
+      .hero-section { padding:96px 16px 56px !important; }
+      .hero-badge   { font-size:11px !important; padding:6px 14px !important; }
+      .hero-btns    { flex-direction:column !important; }
+      .hero-btns a  { width:100% !important; justify-content:center !important; font-size:16px !important; padding:16px 24px !important; }
+
+      /* STATS */
+      .stats-bar       { display:grid !important; grid-template-columns:1fr 1fr !important; width:100% !important; }
+      .stats-bar > div { border-right:none !important; border-bottom:1px solid var(--border); padding:16px !important; }
+      .stats-bar > div:nth-child(odd)  { border-right:1px solid var(--border) !important; }
+      .stats-bar > div:last-child      { border-bottom:none !important; }
+      .stats-bar > div:nth-child(3)    { border-bottom:none !important; }
+
+      /* SECTIONS */
+      .sec-pad  { padding:56px 16px !important; }
+      .cta-pad  { padding:64px 16px !important; }
+
+      /* GRIDS → stack */
+      .two-col  { grid-template-columns:1fr !important; }
+      .one-col  { grid-template-columns:1fr !important; }
+
+      /* TERMINAL */
+      .terminal-body { font-size:11px !important; padding:14px 10px !important; line-height:1.75 !important; }
+
+      /* CASE BADGE */
+      .case-badge { margin-left:0 !important; width:100% !important; text-align:center !important; }
+
+      /* CTA FINAL */
+      .cta-btn { font-size:16px !important; padding:17px 24px !important; width:100% !important; justify-content:center !important; }
+
+      /* FAQ */
+      details summary { padding:18px 16px; font-size:15px; }
+      .faq-body { padding:0 16px 18px; }
+
+      /* FOOTER */
+      .footer-inner { justify-content:center !important; text-align:center !important; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T29WB9RX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Fim Google Tag Manager (noscript) -->
+
+<!-- Glow BG -->
+<div style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden">
+  <div style="position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(101,194,205,0.07) 0%,transparent 70%)"></div>
+  <div style="position:absolute;bottom:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(101,194,205,0.05) 0%,transparent 70%)"></div>
+</div>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav style="position:fixed;top:0;width:100%;z-index:100;background:rgba(8,12,16,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)">
+  <div style="max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between">
+    <!-- LOGO REAL — branca, sem fundo -->
+    <img src="logo.svg" alt="VaiAnuncio AI" class="nav-logo"
+         style="height:82px;width:auto">
+
+    <div class="nav-links" style="display:flex;align-items:center;gap:24px">
+      <a href="#como-funciona" style="color:#6b7280;font-size:14px;font-weight:500;text-decoration:none">Como funciona</a>
+      <a href="#cases"         style="color:#6b7280;font-size:14px;font-weight:500;text-decoration:none">Cases</a>
+    </div>
+    <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
+       onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+       class="btn-glow teal-gradient nav-cta"
+       style="color:#000;font-weight:800;font-size:14px;padding:11px 24px;border-radius:50px;text-decoration:none;white-space:nowrap">
+      Diagnóstico grátis
+    </a>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="grid-bg hero-section" style="padding:128px 24px 88px;position:relative;z-index:1;text-align:center">
+  <div style="max-width:880px;margin:0 auto">
+    <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);border-radius:50px;padding:8px 22px;margin-bottom:30px">
+      <span style="width:8px;height:8px;background:var(--teal);border-radius:50%;display:inline-block;animation:pulse-btn 1.5s infinite"></span>
+      <span style="color:var(--teal);font-size:13px;font-weight:600">IA de Atendimento · Tráfego Pago · 24h no ar</span>
+    </div>
+
+    <h1 style="font-size:clamp(2.6rem,6.5vw,4.4rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px">
+      Seu negócio perde<br>
+      <span class="shimmer-text">59% dos clientes</span><br>
+      enquanto está fechado.
+    </h1>
+
+    <p style="color:#8892a0;font-size:clamp(1rem,2.5vw,1.2rem);max-width:580px;margin:0 auto 44px;line-height:1.75">
+      IA de atendimento que responde em <strong style="color:#fff">7 segundos</strong> + tráfego pago inteligente. Para clínicas e prestadores que não podem perder um lead sequer.
+    </p>
+
+    <div class="hero-btns" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:64px">
+      <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
+         onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+         class="btn-glow teal-gradient"
+         style="display:inline-flex;align-items:center;gap:10px;color:#000;font-weight:800;font-size:18px;padding:18px 40px;border-radius:60px;text-decoration:none">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        QUERO MINHA AGENDA CHEIA
+      </a>
+      <a href="#como-funciona"
+         style="display:inline-flex;align-items:center;gap:8px;color:var(--teal);font-weight:600;font-size:16px;padding:18px 32px;border-radius:60px;border:1px solid rgba(101,194,205,0.3);text-decoration:none;background:rgba(101,194,205,0.05)">
+        Ver demonstração
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="glass stats-bar" style="display:inline-flex;flex-wrap:wrap;border-radius:20px;overflow:hidden">
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">+5k</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">leads/mês</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">7s</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">resposta da IA</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">24/7</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">atendimento</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center">
+        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">+78%</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">mais conversão</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ DOR ════════════════ -->
+<section class="sec-pad" style="padding:80px 24px;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">O problema real</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-top:12px">Reconhece alguma dessas situações?</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <div class="glass card-hover" style="border-radius:18px;padding:28px;border-left:3px solid #ef4444">
+        <div style="font-size:32px;margin-bottom:14px">🌙</div>
+        <h3 style="font-weight:800;color:#ef4444;margin-bottom:8px">Lead às 20h, sem resposta</h3>
+        <p style="color:#6b7280;font-size:14px;line-height:1.75">Você fecha às 18h. O cliente manda mensagem às 20h. De manhã, já marcou com o concorrente.</p>
+      </div>
+      <div class="glass card-hover" style="border-radius:18px;padding:28px;border-left:3px solid #f59e0b">
+        <div style="font-size:32px;margin-bottom:14px">💸</div>
+        <h3 style="font-weight:800;color:#f59e0b;margin-bottom:8px">R$3.600/mês de recepcionista</h3>
+        <p style="color:#6b7280;font-size:14px;line-height:1.75">Salário + encargos. E ela ainda erra agendamento, perde lead e tira férias. A IA não faz isso.</p>
+      </div>
+      <div class="glass card-hover" style="border-radius:18px;padding:28px;border-left:3px solid #8b5cf6">
+        <div style="font-size:32px;margin-bottom:14px">📉</div>
+        <h3 style="font-weight:800;color:#8b5cf6;margin-bottom:8px">Anúncio rodando, agenda vazia</h3>
+        <p style="color:#6b7280;font-size:14px;line-height:1.75">5 minutos sem responder = -10x na conversão (MIT, 2024). O lead vai embora antes de você ver.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ COMO FUNCIONA ════════════════ -->
+<section id="como-funciona" class="grid-bg sec-pad" style="padding:80px 24px;position:relative;z-index:1">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:52px">
+      <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">A tecnologia</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-top:12px">Como a IA funciona na prática</h2>
+      <p style="color:#6b7280;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto">Agentes inteligentes treinados com a voz do seu negócio — integrados ao WhatsApp em até 7 dias.</p>
+    </div>
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span style="color:#4a5568;font-size:12px;margin-left:8px">agente-ia · WhatsApp · online 24h</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">cliente  </span>Oi, vocês atendem hoje?</div>
+          <div><span class="t-ia">agente   </span><span class="t-ia">Olá! Atendo 24h 😊 Qual serviço?</span></div>
+          <br>
+          <div><span class="t-prompt">cliente  </span>Quero agendar uma consulta</div>
+          <div><span class="t-ia">agente   </span><span class="t-ia">Tenho horários amanhã:</span></div>
+          <div><span style="color:transparent">agente   </span><span class="t-ia">9h, 14h ou 17h. Qual prefere?</span></div>
+          <br>
+          <div><span class="t-prompt">cliente  </span>14h perfeito</div>
+          <div><span class="t-ok">agente ✓ </span><span class="t-ok">Agendado! Confirmação enviada.</span></div>
+          <br>
+          <div><span class="t-dim">// resposta: </span><span class="t-ia">7s</span></div>
+          <div><span class="t-dim">// horário: </span><span class="t-ia">02:34am ✓</span></div>
+          <div><span class="cursor"></span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="glass-teal card-hover" style="border-radius:16px;padding:22px;display:flex;gap:16px">
+          <div class="teal-gradient" style="width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:17px;flex-shrink:0">1</div>
+          <div><h4 style="font-weight:800;margin-bottom:4px">Treinamento personalizado</h4><p style="color:#6b7280;font-size:13px;line-height:1.65">O agente aprende sobre seu negócio: serviços, preços, horários, objeções. Fala com a sua voz.</p></div>
+        </div>
+        <div class="glass card-hover" style="border-radius:16px;padding:22px;display:flex;gap:16px">
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:17px;flex-shrink:0">2</div>
+          <div><h4 style="font-weight:800;margin-bottom:4px">Integração no seu WhatsApp</h4><p style="color:#6b7280;font-size:13px;line-height:1.65">Responde, agenda, qualifica e envia confirmação automática — sem você estar online.</p></div>
+        </div>
+        <div class="glass card-hover" style="border-radius:16px;padding:22px;display:flex;gap:16px">
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:17px;flex-shrink:0">3</div>
+          <div><h4 style="font-weight:800;margin-bottom:4px">Você recebe só os prontos</h4><p style="color:#6b7280;font-size:13px;line-height:1.65">Leads já qualificados e agendados. Sem filtrar conversa por conversa.</p></div>
+        </div>
+        <div class="glass card-hover" style="border-radius:16px;padding:22px;display:flex;gap:16px">
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--teal);font-size:17px;flex-shrink:0">4</div>
+          <div><h4 style="font-weight:800;margin-bottom:4px">Relatório mensal com dados</h4><p style="color:#6b7280;font-size:13px;line-height:1.65">Leads atendidos, conversão, horários de pico. Otimizamos todo mês.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CASES ════════════════ -->
+<section id="cases" class="sec-pad" style="padding:80px 24px;background:var(--card);border-top:1px solid var(--border);position:relative;z-index:1">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:52px">
+      <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">Resultados reais</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-top:12px">Antes e depois da implementação</h2>
+    </div>
+
+    <!-- Case 1 -->
+    <div class="glass card-hover" style="border-radius:22px;padding:34px;margin-bottom:22px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#65c2cd,#2d8a96);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">👩‍⚕️</div>
+        <div><div style="font-weight:900;font-size:1.05rem">Dra. Camila Rocha</div><div style="color:var(--teal);font-size:13px;font-weight:600">Clínica Odontológica · São Paulo</div></div>
+        <div class="case-badge" style="margin-left:auto;background:rgba(40,200,64,0.1);border:1px solid rgba(40,200,64,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#28c840">✓ Ativo há 2 meses</div>
+      </div>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card-before">
+          <div style="color:#ef4444;font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">⬛ Antes</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Perdia leads que chegavam à noite</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Recepcionista sobrecarregada com erros</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Alta taxa de falta por falta de confirmação</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Faturamento estagnado há 6 meses</li>
+          </ul>
+        </div>
+        <div class="card-after">
+          <div style="color:var(--teal);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">✦ Depois — 60 dias</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>IA agenda 24h — 4 consultas de madrugada</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>+40% de comparecimento</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>Recepcionista focada no presencial</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>+R$8.200/mês de receita adicional</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding:14px 18px;background:rgba(101,194,205,0.05);border-radius:10px;border-left:3px solid var(--teal)">
+        <p style="font-size:14px;color:#a0aab4;font-style:italic">"Acordei na segunda com 4 consultas marcadas de sábado à noite. Nunca imaginei que isso era possível."</p>
+        <p style="font-size:12px;color:var(--teal);font-weight:700;margin-top:8px">— Dra. Camila Rocha</p>
+      </div>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="glass card-hover" style="border-radius:22px;padding:34px;margin-bottom:22px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#b45309);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🔧</div>
+        <div><div style="font-weight:900;font-size:1.05rem">Roberto Mendes</div><div style="color:#f59e0b;font-size:13px;font-weight:600">Elétrica e Manutenção · ABC Paulista</div></div>
+        <div style="margin-left:auto;background:rgba(40,200,64,0.1);border:1px solid rgba(40,200,64,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#28c840">✓ Ativo há 3 meses</div>
+      </div>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card-before">
+          <div style="color:#ef4444;font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">⬛ Antes</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Perdia chamado por estar em serviço</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>CPL de R$67 sem retorno claro</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Sem controle de orçamentos pendentes</li>
+          </ul>
+        </div>
+        <div class="card-after">
+          <div style="color:var(--teal);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">✦ Depois — 90 dias</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>IA qualifica e organiza os chamados</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>CPL caiu de R$67 para R$18</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>3x mais orçamentos fechados</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding:14px 18px;background:rgba(101,194,205,0.05);border-radius:10px;border-left:3px solid var(--teal)">
+        <p style="font-size:14px;color:#a0aab4;font-style:italic">"Antes perdia serviço porque estava num serviço. Agora o WhatsApp responde sozinho e os pedidos chegam organizados."</p>
+        <p style="font-size:12px;color:var(--teal);font-weight:700;margin-top:8px">— Roberto Mendes</p>
+      </div>
+    </div>
+
+    <!-- Case 3 -->
+    <div class="glass card-hover" style="border-radius:22px;padding:34px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#9333ea);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">💆‍♀️</div>
+        <div><div style="font-weight:900;font-size:1.05rem">Fernanda Lima</div><div style="color:#ec4899;font-size:13px;font-weight:600">Clínica de Estética · Guarulhos</div></div>
+        <div style="margin-left:auto;background:rgba(40,200,64,0.1);border:1px solid rgba(40,200,64,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#28c840">✓ Ativo há 45 dias</div>
+      </div>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card-before">
+          <div style="color:#ef4444;font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">⬛ Antes</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Instagram lotado de DMs sem resposta</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Agenda com buracos na semana</li>
+          </ul>
+        </div>
+        <div class="card-after">
+          <div style="color:var(--teal);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">✦ Depois — 45 dias</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>100% das DMs respondidas em segundos</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>Agenda cheia por 3 semanas</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>+R$5.400 de faturamento no mês</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 4 — SDR IA: Loja de Botas -->
+    <div class="glass card-hover" style="border-radius:22px;padding:34px;margin-top:22px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#4f46e5);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">👢</div>
+        <div>
+          <div style="font-weight:900;font-size:1.05rem">BotsOn — Loja de Botas</div>
+          <div style="color:#8b5cf6;font-size:13px;font-weight:600">E-commerce · SDR com IA · Qualificação de leads</div>
+        </div>
+        <div style="margin-left:auto;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#8b5cf6">IA qualifica — humano fecha</div>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span style="color:#4a5568;font-size:12px;margin-left:8px">sdr-ia · BotsOn · qualificação de lead</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">Matheus  </span>Oi, vi o anúncio de vocês, quero uma bota</div>
+          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Oi Matheus! Boa escolha 😄 Vai usar pra</span></div>
+          <div><span style="color:transparent">SDR IA   </span><span class="t-ia">trabalho, trilha ou uso casual?</span></div>
+          <br>
+          <div><span class="t-prompt">Matheus  </span>Casual, pra usar no dia a dia</div>
+          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Show! Prefere cano curto, médio ou longo?</span></div>
+          <br>
+          <div><span class="t-prompt">Matheus  </span>Cano médio, estilo mais despojado</div>
+          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Ótimo. Qual o seu número?</span></div>
+          <br>
+          <div><span class="t-prompt">Matheus  </span>42</div>
+          <div><span class="t-ia">SDR IA   </span><span class="t-ia">E qual sua faixa de investimento?</span></div>
+          <div><span style="color:transparent">SDR IA   </span><span class="t-ia">Até R$300, de R$300–600 ou acima disso?</span></div>
+          <br>
+          <div><span class="t-prompt">Matheus  </span>Até R$300</div>
+          <br>
+          <div><span class="t-ok">SDR IA ✓ </span><span class="t-ok">Matheus, agora que sei o que você quer</span></div>
+          <div><span style="color:transparent">SDR IA ✓ </span><span class="t-ok">vou te passar pro Ronaldo, nosso vendedor</span></div>
+          <div><span style="color:transparent">SDR IA ✓ </span><span class="t-ok">disponível agora. Um segundo! 👊</span></div>
+          <br>
+          <div><span class="t-dim">// lead qualificado em: </span><span class="t-ia">4 perguntas · 2min</span></div>
+          <div><span class="t-dim">// handoff p/ humano: </span><span class="t-ia">Ronaldo · online ✓</span></div>
+          <div><span class="cursor"></span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center">
+        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">4x</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">mais leads qualificados</div>
+        </div>
+        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">2min</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">qualificação média</div>
+        </div>
+        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">+62%</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">taxa de fechamento</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ CTA FINAL ════════════════ -->
+<section class="grid-bg cta-pad" style="padding:100px 24px;position:relative;z-index:1;text-align:center">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(101,194,205,0.12) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="max-width:620px;margin:0 auto;position:relative">
+    <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">Próximo passo</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin:16px 0;line-height:1.1">
+      Diagnóstico gratuito.<br><span class="shimmer-text">30 minutos.</span>
+    </h2>
+    <p style="color:#6b7280;font-size:1.05rem;margin-bottom:36px;line-height:1.75">Analisamos seu negócio, calculamos quantos leads você perde por mês e mostramos como resolver — sem compromisso.</p>
+
+    <div class="glass-teal" style="border-radius:18px;padding:24px;margin-bottom:30px;text-align:left">
+      <p style="font-weight:700;color:var(--teal);margin-bottom:14px;text-align:center">No diagnóstico você recebe:</p>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="display:flex;gap:9px;font-size:14px;color:#d1d5db"><span style="color:var(--teal)">✓</span>Mapeamento de onde você perde leads</div>
+        <div style="display:flex;gap:9px;font-size:14px;color:#d1d5db"><span style="color:var(--teal)">✓</span>Estimativa de receita perdida/mês</div>
+        <div style="display:flex;gap:9px;font-size:14px;color:#d1d5db"><span style="color:var(--teal)">✓</span>Demo ao vivo da IA</div>
+        <div style="display:flex;gap:9px;font-size:14px;color:#d1d5db"><span style="color:var(--teal)">✓</span>Proposta para o seu nicho</div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20agendar%20meu%20diagnóstico%20gratuito."
+       onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+       class="btn-glow teal-gradient cta-btn"
+       style="display:inline-flex;align-items:center;gap:12px;color:#000;font-weight:800;font-size:18px;padding:20px 48px;border-radius:60px;text-decoration:none">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      AGENDAR DIAGNÓSTICO GRATUITO
+    </a>
+    <p style="color:#1e2a35;font-size:13px;margin-top:14px">Sem compromisso. Sem pitch de venda forçada.</p>
+  </div>
+</section>
+
+<!-- ════════════════ FAQ ════════════════ -->
+<section class="sec-pad" style="padding:80px 24px;background:var(--card);border-top:1px solid var(--border);position:relative;z-index:1">
+  <div style="max-width:680px;margin:0 auto">
+    <h2 style="font-size:2rem;font-weight:900;text-align:center;margin-bottom:38px">Tire suas dúvidas</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <details class="glass card-hover" style="border-radius:16px">
+        <summary>Funciona para qual tipo de negócio? <span class="faq-icon">+</span></summary>
+        <div class="faq-body">Clínicas, consultórios, prestadores de serviço local, academias — qualquer negócio que recebe leads e precisa responder rápido para converter.</div>
+      </details>
+      <details class="glass card-hover" style="border-radius:16px">
+        <summary>Preciso de tráfego pago para usar a IA? <span class="faq-icon">+</span></summary>
+        <div class="faq-body">Não. A IA funciona com qualquer fonte de leads — orgânico, indicação, Google, Instagram. Tráfego pago é um motor adicional para quem quer escalar.</div>
+      </details>
+      <details class="glass card-hover" style="border-radius:16px">
+        <summary>Em quanto tempo a IA fica pronta? <span class="faq-icon">+</span></summary>
+        <div class="faq-body">Até 7 dias úteis após o diagnóstico. Cuidamos de tudo — você só nos passa as informações do negócio.</div>
+      </details>
+      <details class="glass card-hover" style="border-radius:16px">
+        <summary>A IA substitui minha equipe? <span class="faq-icon">+</span></summary>
+        <div class="faq-body">Complementa. Cuida do que é repetitivo para sua equipe focar no atendimento presencial.</div>
+      </details>
+      <details class="glass card-hover" style="border-radius:16px">
+        <summary>Qual o investimento? <span class="faq-icon">+</span></summary>
+        <div class="faq-body">Definimos no diagnóstico gratuito — só depois de entender seu negócio apresentamos uma proposta.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:28px 24px;border-top:1px solid var(--border);position:relative;z-index:1">
+  <div class="footer-inner" style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+    <img src="logo.svg" alt="VaiAnuncio AI" style="height:48px;width:auto">
+    <span style="color:#1e2a35;font-size:13px">WhatsApp: (11) 96014-5026 · Seg–Sex 9h–18h</span>
+    <div style="display:flex;gap:16px;font-size:13px">
+      <a href="#" style="color:#1e2a35;text-decoration:none">Termos</a>
+      <a href="#" style="color:#1e2a35;text-decoration:none">Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

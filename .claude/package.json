@@ -1,1 +1,1 @@
-{"type":"commonjs"}
+{"type":"commonjs","dependencies":{"localtunnel":"^2.0.2"}}

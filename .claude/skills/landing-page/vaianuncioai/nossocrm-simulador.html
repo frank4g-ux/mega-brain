@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NossoCRM — Simulador Interativo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; display: flex; height: 100vh; overflow: hidden; }
+
+  /* SIDEBAR */
+  .sidebar { width: 200px; background: #0f0f1a; border-right: 1px solid #1e1e2e; display: flex; flex-direction: column; padding: 16px 0; flex-shrink: 0; }
+  .logo { padding: 8px 16px 20px; font-size: 18px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .logo span { background: #7c3aed; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .nav-item { padding: 10px 16px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #888; border-radius: 6px; margin: 2px 8px; transition: all 0.2s; position: relative; }
+  .nav-item:hover { background: #1a1a2e; color: #fff; }
+  .nav-item.active { background: #1e1040; color: #a78bfa; }
+  .nav-item .icon { font-size: 15px; }
+  .user-area { margin-top: auto; padding: 12px 16px; border-top: 1px solid #1e1e2e; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #666; }
+  .avatar { width: 28px; height: 28px; background: #7c3aed; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+
+  /* MAIN */
+  .main { flex: 1; overflow-y: auto; background: #0d0d1a; }
+  .tab-content { display: none; padding: 28px; }
+  .tab-content.active { display: block; }
+  .page-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: #555; margin-bottom: 24px; }
+
+  /* TOOLTIP SYSTEM */
+  .tip { position: relative; }
+  .tip-trigger { cursor: help; }
+  .balloon { display: none; position: fixed; z-index: 9999; background: #1e1040; border: 1px solid #7c3aed; border-radius: 10px; padding: 14px 16px; max-width: 280px; font-size: 13px; line-height: 1.5; color: #e0e0e0; box-shadow: 0 8px 32px rgba(124,58,237,0.3); }
+  .balloon.show { display: block; }
+  .balloon-title { font-weight: 700; color: #a78bfa; margin-bottom: 6px; font-size: 14px; }
+  .balloon-close { position: absolute; top: 8px; right: 10px; cursor: pointer; color: #666; font-size: 16px; }
+  .balloon-close:hover { color: #fff; }
+  .click-hint { font-size: 10px; color: #7c3aed; margin-left: 4px; background: #1e1040; padding: 1px 5px; border-radius: 10px; cursor: pointer; vertical-align: middle; }
+
+  /* CARDS */
+  .cards-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 16px; cursor: pointer; transition: border-color 0.2s; }
+  .card:hover { border-color: #7c3aed44; }
+  .card-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .card-value { font-size: 26px; font-weight: 700; color: #fff; }
+  .card-value.green { color: #22c55e; }
+  .card-value.yellow { color: #f59e0b; }
+  .card-sub { font-size: 11px; color: #444; margin-top: 4px; }
+
+  /* INBOX */
+  .inbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .inbox-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 18px; cursor: pointer; transition: all 0.2s; }
+  .inbox-card:hover { border-color: #7c3aed55; transform: translateY(-1px); }
+  .inbox-card-title { font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .inbox-card-body { font-size: 13px; color: #888; }
+  .focus-btn { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 600; }
+  .focus-btn:hover { opacity: 0.9; }
+  .inbox-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+  /* BOARDS / KANBAN */
+  .board-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .btn-primary { background: #7c3aed; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 600; }
+  .btn-primary:hover { background: #6d28d9; }
+  .kanban { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; }
+  .kanban-col { min-width: 200px; background: #0f0f1a; border-radius: 10px; padding: 12px; border: 1px solid #1e1e2e; flex-shrink: 0; }
+  .col-header { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: flex; justify-content: space-between; }
+  .col-count { background: #1e1e2e; padding: 1px 7px; border-radius: 10px; font-size: 11px; }
+  .deal-card { background: #13131f; border: 1px solid #1e1e2e; border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
+  .deal-card:hover { border-color: #7c3aed88; transform: translateX(2px); }
+  .deal-name { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .deal-value { font-size: 12px; color: #22c55e; font-weight: 600; }
+  .deal-tags { display: flex; gap: 4px; margin-top: 6px; }
+  .tag { background: #1e1040; color: #a78bfa; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+  .deal-avatar { width: 20px; height: 20px; background: #7c3aed; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; margin-top: 6px; }
+  .add-deal { color: #555; font-size: 12px; text-align: center; padding: 8px; cursor: pointer; border: 1px dashed #1e1e2e; border-radius: 6px; margin-top: 4px; }
+  .add-deal:hover { color: #a78bfa; border-color: #7c3aed; }
+
+  /* CONTATOS */
+  .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-btn { background: #0f0f1a; border: 1px solid #1e1e2e; color: #888; padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn.active { background: #1e1040; border-color: #7c3aed; color: #a78bfa; }
+  .filter-btn:hover { border-color: #7c3aed55; }
+  .search-bar { background: #0f0f1a; border: 1px solid #1e1e2e; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 13px; width: 260px; outline: none; }
+  .search-bar:focus { border-color: #7c3aed; }
+  .contacts-actions { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; justify-content: space-between; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; border-bottom: 1px solid #1e1e2e; }
+  td { padding: 12px; border-bottom: 1px solid #0f0f1a; font-size: 13px; cursor: pointer; }
+  tr:hover td { background: #0f0f1a; }
+  .status-badge { padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .status-lead { background: #1e3a5f; color: #60a5fa; }
+  .status-cliente { background: #14532d; color: #4ade80; }
+  .status-prospect { background: #2d1b69; color: #a78bfa; }
+
+  /* ATIVIDADES */
+  .ativ-header { display: flex; justify-content: space-between; margin-bottom: 16px; }
+  .ativ-item { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 14px; transition: all 0.2s; }
+  .ativ-item:hover { border-color: #7c3aed55; }
+  .ativ-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .ativ-icon.call { background: #14532d; }
+  .ativ-icon.msg { background: #1e3a5f; }
+  .ativ-icon.meet { background: #2d1b69; }
+  .ativ-icon.task { background: #3b1a1a; }
+  .ativ-body { flex: 1; }
+  .ativ-title { font-size: 13px; font-weight: 600; color: #fff; }
+  .ativ-meta { font-size: 11px; color: #555; margin-top: 2px; }
+  .ativ-time { font-size: 11px; color: #888; flex-shrink: 0; }
+  .ativ-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ativ-status.pending { background: #f59e0b; }
+  .ativ-status.done { background: #22c55e; }
+  .ativ-status.late { background: #ef4444; }
+
+  /* RELATORIOS */
+  .report-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .report-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 16px; cursor: pointer; }
+  .rc-icon { font-size: 20px; margin-bottom: 8px; }
+  .rc-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+  .rc-value { font-size: 24px; font-weight: 700; color: #fff; margin: 4px 0; }
+  .rc-change { font-size: 11px; color: #22c55e; }
+  .chart-area { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 20px; margin-bottom: 14px; cursor: pointer; }
+  .chart-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 16px; }
+  .fake-chart { height: 120px; display: flex; align-items: flex-end; gap: 8px; }
+  .bar { background: linear-gradient(to top, #7c3aed, #a855f7); border-radius: 4px 4px 0 0; flex: 1; opacity: 0.7; transition: opacity 0.2s; cursor: pointer; }
+  .bar:hover { opacity: 1; }
+  .chart-labels { display: flex; gap: 8px; margin-top: 6px; }
+  .chart-label { flex: 1; text-align: center; font-size: 10px; color: #555; }
+
+  /* CONFIGURACOES */
+  .config-tabs { display: flex; gap: 0; border-bottom: 1px solid #1e1e2e; margin-bottom: 20px; }
+  .config-tab { padding: 10px 16px; font-size: 13px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .config-tab.active { color: #a78bfa; border-bottom-color: #7c3aed; }
+  .config-tab:hover { color: #fff; }
+  .config-section { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 20px; margin-bottom: 14px; cursor: pointer; }
+  .config-section:hover { border-color: #7c3aed44; }
+  .config-section-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .config-section-sub { font-size: 12px; color: #555; margin-bottom: 14px; }
+  .input-field { background: #13131f; border: 1px solid #1e1e2e; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px; width: 100%; outline: none; }
+  .input-field:focus { border-color: #7c3aed; }
+  .select-field { background: #13131f; border: 1px solid #1e1e2e; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px; outline: none; }
+
+  /* VISAO GERAL */
+  .vg-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .vg-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 16px; cursor: pointer; }
+  .vg-card:hover { border-color: #7c3aed44; }
+  .vg-card-icon { font-size: 20px; float: right; }
+  .vg-card-label { font-size: 11px; color: #666; margin-bottom: 6px; }
+  .vg-card-value { font-size: 28px; font-weight: 700; color: #fff; }
+  .vg-card-change { font-size: 11px; color: #555; margin-top: 4px; }
+  .saude-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .saude-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 10px; padding: 16px; cursor: pointer; }
+  .saude-card:hover { border-color: #7c3aed44; }
+  .saude-title { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .saude-value { font-size: 22px; font-weight: 700; color: #fff; }
+  .saude-sub { font-size: 11px; color: #555; margin-top: 4px; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a0f; }
+  ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
+
+  /* HEADER */
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .top-actions { display: flex; gap: 8px; align-items: center; }
+  .icon-btn { background: #0f0f1a; border: 1px solid #1e1e2e; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: #666; }
+  .icon-btn:hover { border-color: #7c3aed; color: #a78bfa; }
+
+  /* TUTORIAL OVERLAY */
+  .tutorial-bar { background: linear-gradient(135deg, #1e1040, #13131f); border: 1px solid #7c3aed44; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: #a78bfa; }
+  .tutorial-bar span { font-size: 16px; }
+
+  /* MODAL DEAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 14px; padding: 24px; width: 480px; max-width: 90vw; }
+  .modal-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+  .modal-field { margin-bottom: 12px; }
+  .modal-label { font-size: 11px; color: #666; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+  .btn-cancel { background: transparent; border: 1px solid #1e1e2e; color: #666; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .btn-cancel:hover { border-color: #555; color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="logo"><span>N</span> NossoCRM</div>
+  <div class="nav-item active" onclick="showTab('inbox')" id="nav-inbox">
+    <span class="icon">📥</span> Inbox
+  </div>
+  <div class="nav-item" onclick="showTab('visaogeral')" id="nav-visaogeral">
+    <span class="icon">📊</span> Visão Geral
+  </div>
+  <div class="nav-item" onclick="showTab('boards')" id="nav-boards">
+    <span class="icon">🗂️</span> Boards
+  </div>
+  <div class="nav-item" onclick="showTab('contatos')" id="nav-contatos">
+    <span class="icon">👥</span> Contatos
+  </div>
+  <div class="nav-item" onclick="showTab('atividades')" id="nav-atividades">
+    <span class="icon">✅</span> Atividades
+  </div>
+  <div class="nav-item" onclick="showTab('relatorios')" id="nav-relatorios">
+    <span class="icon">📈</span> Relatórios
+  </div>
+  <div class="nav-item" onclick="showTab('configuracoes')" id="nav-configuracoes">
+    <span class="icon">⚙️</span> Configurações
+  </div>
+  <div class="user-area">
+    <div class="avatar">FR</div>
+    <div>frank.4g<br><span style="color:#444;font-size:10px">frank.4g@outlook.com</span></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- ===== INBOX ===== -->
+  <div class="tab-content active" id="tab-inbox">
+    <div class="tutorial-bar">
+      <span>💡</span> Clique em qualquer elemento para ver uma explicação detalhada do que ele faz.
+    </div>
+    <div class="top-bar">
+      <div>
+        <div class="page-title">Inbox <span class="click-hint" onclick="showBalloon(event,'inbox-main')">?</span></div>
+        <div class="page-sub">Sua mesa de trabalho.</div>
+      </div>
+      <div class="top-actions">
+        <div class="icon-btn" onclick="showBalloon(event,'visao-lista')">≡ Lista</div>
+        <div class="icon-btn" onclick="showBalloon(event,'visao-foco')">🎯 Foco</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px; font-size:13px; font-weight:600; color:#fff;">Visão Geral
+      <span class="click-hint" onclick="showBalloon(event,'inbox-visaogeral')">?</span>
+    </div>
+    <div style="font-size:12px;color:#555;margin-bottom:14px;">Diagnóstico rápido do dia (sem virar outra lista de atividades).</div>
+
+    <div class="cards-row">
+      <div class="card" onclick="showBalloon(event,'atrasados')">
+        <div class="card-label">⚠️ Atrasados</div>
+        <div class="card-value green">0</div>
+        <div class="card-sub">Tudo em dia</div>
+      </div>
+      <div class="card" onclick="showBalloon(event,'hoje')">
+        <div class="card-label">📅 Hoje</div>
+        <div class="card-value green">3</div>
+        <div class="card-sub">Tarefas para hoje</div>
+      </div>
+      <div class="card" onclick="showBalloon(event,'sugestoes')">
+        <div class="card-label">🤖 Sugestões Críticas</div>
+        <div class="card-value yellow">1</div>
+        <div class="card-sub">IA identificou urgência</div>
+      </div>
+      <div class="card" onclick="showBalloon(event,'pendencias')">
+        <div class="card-label">📋 Pendências</div>
+        <div class="card-value">2</div>
+        <div class="card-sub">Backlog leve</div>
+      </div>
+    </div>
+
+    <div class="inbox-grid">
+      <div class="inbox-card" onclick="showBalloon(event,'risco')">
+        <div class="inbox-top">
+          <div class="inbox-card-title">⚠️ Risco (resgate e deals parados)</div>
+          <span style="font-size:12px;color:#7c3aed;cursor:pointer">Ver tudo →</span>
+        </div>
+        <div class="inbox-card-body" style="margin-top:10px;">
+          <div style="padding:10px;background:#1a0a0a;border-radius:6px;border-left:3px solid #ef4444;">
+            <div style="font-size:12px;font-weight:600;color:#fff;">Desentupidora Santos</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Parado há 8 dias na etapa "Proposta Enviada"</div>
+          </div>
+        </div>
+      </div>
+      <div class="inbox-card" onclick="showBalloon(event,'upsell')">
+        <div class="inbox-top">
+          <div class="inbox-card-title">📈 Oportunidades (upsell)</div>
+          <span style="font-size:12px;color:#7c3aed;cursor:pointer">Ver tudo →</span>
+        </div>
+        <div class="inbox-card-body" style="margin-top:10px;">
+          <div style="padding:10px;background:#0a1a10;border-radius:6px;border-left:3px solid #22c55e;">
+            <div style="font-size:12px;font-weight:600;color:#fff;">Clínica Dra. Ana</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Cliente ativo há 60 dias — momento ideal para oferecer SmartZap</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;text-align:center;">
+      <button class="focus-btn" onclick="showBalloon(event,'btn-foco')">🎯 Começar Foco</button>
+    </div>
+  </div>
+
+  <!-- ===== VISÃO GERAL ===== -->
+  <div class="tab-content" id="tab-visaogeral">
+    <div class="tutorial-bar"><span>💡</span> Clique nos cards para entender cada métrica.</div>
+    <div class="page-title">Visão Geral <span class="click-hint" onclick="showBalloon(event,'vg-main')">?</span></div>
+    <div class="page-sub">O pulso do seu negócio em tempo real.</div>
+
+    <div class="vg-cards">
+      <div class="vg-card" onclick="showBalloon(event,'vg-pipeline')">
+        <div class="vg-card-icon">💰</div>
+        <div class="vg-card-label">Pipeline Total</div>
+        <div class="vg-card-value">R$8.500</div>
+        <div class="vg-card-change">+R$3.500 vs mês passado</div>
+      </div>
+      <div class="vg-card" onclick="showBalloon(event,'vg-ativos')">
+        <div class="vg-card-icon">👥</div>
+        <div class="vg-card-label">Negócios Ativos</div>
+        <div class="vg-card-value">4</div>
+        <div class="vg-card-change">+2 vs mês passado</div>
+      </div>
+      <div class="vg-card" onclick="showBalloon(event,'vg-conversao')">
+        <div class="vg-card-icon">🎯</div>
+        <div class="vg-card-label">Conversão</div>
+        <div class="vg-card-value">33%</div>
+        <div class="vg-card-change">+5% vs mês passado</div>
+      </div>
+      <div class="vg-card" onclick="showBalloon(event,'vg-receita')">
+        <div class="vg-card-icon">📈</div>
+        <div class="vg-card-label">Receita (Ganha)</div>
+        <div class="vg-card-value">R$2.800</div>
+        <div class="vg-card-change">+R$1.300 vs mês passado</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">👤 Saúde da Carteira <span class="click-hint" onclick="showBalloon(event,'saude-carteira')">?</span></div>
+    <div class="saude-grid">
+      <div class="saude-card" onclick="showBalloon(event,'distribuicao')">
+        <div class="saude-title">Distribuição da Carteira</div>
+        <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;">
+          <div style="height:8px;background:#22c55e;border-radius:4px;width:60%;"></div>
+          <div style="height:8px;background:#f59e0b;border-radius:4px;width:25%;"></div>
+          <div style="height:8px;background:#ef4444;border-radius:4px;width:15%;"></div>
+        </div>
+        <div style="font-size:11px;color:#555;display:flex;gap:12px;">
+          <span style="color:#22c55e">● Ativos (3)</span>
+          <span style="color:#f59e0b">● Inativos (1)</span>
+          <span style="color:#ef4444">● Churn (0)</span>
+        </div>
+      </div>
+      <div class="saude-card" onclick="showBalloon(event,'parados')">
+        <div class="saude-title">Negócios Parados</div>
+        <div class="saude-value" style="color:#f59e0b;">1 Deal</div>
+        <div class="saude-sub">Sem mudança de estágio há +8 dias</div>
+        <div class="saude-sub" style="color:#ef4444;margin-top:4px;">R$1.800 em risco</div>
+      </div>
+      <div class="saude-card" onclick="showBalloon(event,'ltv')">
+        <div class="saude-title">LTV Médio</div>
+        <div class="saude-value">R$933</div>
+        <div class="saude-sub">Valor médio vitalício por cliente</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOARDS ===== -->
+  <div class="tab-content" id="tab-boards">
+    <div class="tutorial-bar"><span>💡</span> Clique nos cards do Kanban para ver detalhes. Arraste mentalmente os cards entre colunas conforme avança a venda.</div>
+    <div class="board-header">
+      <div>
+        <div class="page-title">Boards <span class="click-hint" onclick="showBalloon(event,'boards-main')">?</span></div>
+        <div class="page-sub">Funil de Vendas — Desentupidora Santos</div>
+      </div>
+      <button class="btn-primary" onclick="showModal()">+ Novo Deal</button>
+    </div>
+
+    <div class="kanban">
+      <div class="kanban-col" onclick="">
+        <div class="col-header">
+          🟢 Lead Chegou <span class="col-count" onclick="showBalloon(event,'col-lead')">2</span>
+        </div>
+        <div class="deal-card" onclick="showBalloon(event,'deal-joao')">
+          <div class="deal-name">João Silva</div>
+          <div class="deal-value">R$380</div>
+          <div class="deal-tags"><span class="tag">Urgente</span></div>
+          <div class="deal-avatar">JS</div>
+        </div>
+        <div class="deal-card" onclick="showBalloon(event,'deal-maria')">
+          <div class="deal-name">Maria Oliveira</div>
+          <div class="deal-value">R$250</div>
+          <div class="deal-tags"><span class="tag">Residencial</span></div>
+          <div class="deal-avatar">MO</div>
+        </div>
+        <div class="add-deal" onclick="showModal()">+ Adicionar deal</div>
+      </div>
+
+      <div class="kanban-col">
+        <div class="col-header" onclick="showBalloon(event,'col-contato')">
+          📞 Contato Feito <span class="col-count">1</span>
+        </div>
+        <div class="deal-card" onclick="showBalloon(event,'deal-carlos')">
+          <div class="deal-name">Carlos Mendes</div>
+          <div class="deal-value">R$620</div>
+          <div class="deal-tags"><span class="tag">Comercial</span><span class="tag">VIP</span></div>
+          <div class="deal-avatar">CM</div>
+        </div>
+        <div class="add-deal" onclick="showModal()">+ Adicionar deal</div>
+      </div>
+
+      <div class="kanban-col">
+        <div class="col-header" onclick="showBalloon(event,'col-proposta')">
+          📄 Proposta Enviada <span class="col-count" style="background:#2d1b00;color:#f59e0b;">1</span>
+        </div>
+        <div class="deal-card" style="border-color:#f59e0b44;" onclick="showBalloon(event,'deal-parado')">
+          <div class="deal-name">Condomínio Vista</div>
+          <div class="deal-value">R$1.800</div>
+          <div style="font-size:10px;color:#f59e0b;margin-top:4px;">⚠️ Parado há 8 dias</div>
+          <div class="deal-tags"><span class="tag" style="background:#2d1b00;color:#f59e0b;">Resgate</span></div>
+          <div class="deal-avatar">CV</div>
+        </div>
+        <div class="add-deal" onclick="showModal()">+ Adicionar deal</div>
+      </div>
+
+      <div class="kanban-col">
+        <div class="col-header" onclick="showBalloon(event,'col-fechado')">
+          ✅ Fechado <span class="col-count" style="background:#14532d;color:#4ade80;">2</span>
+        </div>
+        <div class="deal-card" style="border-color:#22c55e44;opacity:0.7;" onclick="showBalloon(event,'deal-fechado')">
+          <div class="deal-name">Ana Costa</div>
+          <div class="deal-value" style="color:#4ade80;">✅ R$450</div>
+          <div class="deal-avatar">AC</div>
+        </div>
+        <div class="deal-card" style="border-color:#22c55e44;opacity:0.7;" onclick="showBalloon(event,'deal-fechado2')">
+          <div class="deal-name">Pedro Alves</div>
+          <div class="deal-value" style="color:#4ade80;">✅ R$320</div>
+          <div class="deal-avatar">PA</div>
+        </div>
+      </div>
+
+      <div class="kanban-col">
+        <div class="col-header" onclick="showBalloon(event,'col-perdido')">
+          ❌ Perdido <span class="col-count" style="background:#3b1a1a;color:#f87171;">0</span>
+        </div>
+        <div class="add-deal" onclick="showModal()">+ Adicionar deal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTATOS ===== -->
+  <div class="tab-content" id="tab-contatos">
+    <div class="tutorial-bar"><span>💡</span> Clique nos filtros e nas linhas da tabela para entender como gerenciar seus contatos.</div>
+    <div class="page-title">Contatos (Pessoas) <span class="click-hint" onclick="showBalloon(event,'contatos-main')">?</span></div>
+    <div class="page-sub">Pessoas com quem você negocia.</div>
+
+    <div class="contacts-actions">
+      <input class="search-bar" placeholder="Buscar nomes, emails..." onclick="showBalloon(event,'busca-contato')" readonly>
+      <button class="btn-primary" onclick="showBalloon(event,'novo-contato')">+ Novo Contato</button>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-btn active" onclick="showBalloon(event,'filtro-todos')">Todos 6</div>
+      <div class="filter-btn" onclick="showBalloon(event,'filtro-leads')">Leads 2</div>
+      <div class="filter-btn" onclick="showBalloon(event,'filtro-mql')">MQL 1</div>
+      <div class="filter-btn" onclick="showBalloon(event,'filtro-prospects')">Prospects 2</div>
+      <div class="filter-btn" onclick="showBalloon(event,'filtro-clientes')">Clientes 1</div>
+      <div class="filter-btn" onclick="showBalloon(event,'filtro-perdidos')">Outros/Perdidos 0</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>NOME</th>
+          <th>ESTÁGIO</th>
+          <th>CONTATO</th>
+          <th>STATUS</th>
+          <th>CRIADO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="showBalloon(event,'contato-joao')">
+          <td><strong>João Silva</strong></td>
+          <td>Lead Chegou</td>
+          <td>(11) 99999-0001</td>
+          <td><span class="status-badge status-lead">Lead</span></td>
+          <td>22/03/2026</td>
+        </tr>
+        <tr onclick="showBalloon(event,'contato-maria')">
+          <td><strong>Maria Oliveira</strong></td>
+          <td>Lead Chegou</td>
+          <td>(11) 98888-0002</td>
+          <td><span class="status-badge status-lead">Lead</span></td>
+          <td>21/03/2026</td>
+        </tr>
+        <tr onclick="showBalloon(event,'contato-carlos')">
+          <td><strong>Carlos Mendes</strong></td>
+          <td>Contato Feito</td>
+          <td>(11) 97777-0003</td>
+          <td><span class="status-badge status-prospect">Prospect</span></td>
+          <td>18/03/2026</td>
+        </tr>
+        <tr onclick="showBalloon(event,'contato-condo')">
+          <td><strong>Condomínio Vista</strong></td>
+          <td>Proposta Enviada</td>
+          <td>(11) 96666-0004</td>
+          <td><span class="status-badge status-prospect">Prospect</span></td>
+          <td>14/03/2026</td>
+        </tr>
+        <tr onclick="showBalloon(event,'contato-ana')">
+          <td><strong>Ana Costa</strong></td>
+          <td>Fechado</td>
+          <td>(11) 95555-0005</td>
+          <td><span class="status-badge status-cliente">Cliente</span></td>
+          <td>10/03/2026</td>
+        </tr>
+        <tr onclick="showBalloon(event,'contato-pedro')">
+          <td><strong>Pedro Alves</strong></td>
+          <td>Fechado</td>
+          <td>(11) 94444-0006</td>
+          <td><span class="status-badge status-cliente">Cliente</span></td>
+          <td>05/03/2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== ATIVIDADES ===== -->
+  <div class="tab-content" id="tab-atividades">
+    <div class="tutorial-bar"><span>💡</span> Clique em cada atividade para entender os tipos e como usar no dia a dia.</div>
+    <div class="ativ-header">
+      <div>
+        <div class="page-title">Atividades <span class="click-hint" onclick="showBalloon(event,'ativ-main')">?</span></div>
+        <div class="page-sub">Gerencie suas tarefas e compromissos</div>
+      </div>
+      <button class="btn-primary" onclick="showBalloon(event,'nova-ativ')">+ Nova Atividade</button>
+    </div>
+
+    <div class="ativ-item" onclick="showBalloon(event,'ativ-late')">
+      <div class="ativ-status late"></div>
+      <div class="ativ-icon call">📞</div>
+      <div class="ativ-body">
+        <div class="ativ-title">Ligar para Condomínio Vista — follow-up proposta</div>
+        <div class="ativ-meta">Condomínio Vista · Deal: R$1.800</div>
+      </div>
+      <div class="ativ-time" style="color:#ef4444;">Atrasada<br>14/03</div>
+    </div>
+
+    <div class="ativ-item" onclick="showBalloon(event,'ativ-hoje1')">
+      <div class="ativ-status pending"></div>
+      <div class="ativ-icon msg">💬</div>
+      <div class="ativ-body">
+        <div class="ativ-title">Enviar orçamento via WhatsApp — João Silva</div>
+        <div class="ativ-meta">João Silva · Lead Chegou</div>
+      </div>
+      <div class="ativ-time">Hoje<br>10:00</div>
+    </div>
+
+    <div class="ativ-item" onclick="showBalloon(event,'ativ-hoje2')">
+      <div class="ativ-status pending"></div>
+      <div class="ativ-icon meet">📅</div>
+      <div class="ativ-body">
+        <div class="ativ-title">Reunião de apresentação — Carlos Mendes</div>
+        <div class="ativ-meta">Carlos Mendes · Contato Feito</div>
+      </div>
+      <div class="ativ-time">Hoje<br>15:00</div>
+    </div>
+
+    <div class="ativ-item" onclick="showBalloon(event,'ativ-hoje3')">
+      <div class="ativ-status pending"></div>
+      <div class="ativ-icon task">✅</div>
+      <div class="ativ-body">
+        <div class="ativ-title">Atualizar proposta para Condomínio Vista</div>
+        <div class="ativ-meta">Condomínio Vista · Proposta Enviada</div>
+      </div>
+      <div class="ativ-time">Hoje<br>17:00</div>
+    </div>
+
+    <div class="ativ-item" style="opacity:0.5;" onclick="showBalloon(event,'ativ-feita')">
+      <div class="ativ-status done"></div>
+      <div class="ativ-icon call">📞</div>
+      <div class="ativ-body">
+        <div class="ativ-title" style="text-decoration:line-through;">Qualificar lead Maria Oliveira</div>
+        <div class="ativ-meta">Maria Oliveira · Lead Chegou</div>
+      </div>
+      <div class="ativ-time" style="color:#22c55e;">✅ Feita<br>Ontem</div>
+    </div>
+  </div>
+
+  <!-- ===== RELATÓRIOS ===== -->
+  <div class="tab-content" id="tab-relatorios">
+    <div class="tutorial-bar"><span>💡</span> Clique nos indicadores para entender o que cada métrica significa para seu negócio.</div>
+    <div class="page-title">Relatórios de Performance <span class="click-hint" onclick="showBalloon(event,'rel-main')">?</span></div>
+    <div class="page-sub">Análise detalhada de vendas e tendências.</div>
+
+    <div class="report-cards">
+      <div class="report-card" onclick="showBalloon(event,'rel-pipeline')">
+        <div class="rc-icon">💰</div>
+        <div class="rc-label">Pipeline Total</div>
+        <div class="rc-value">R$3.050</div>
+        <div class="rc-change">+R$1.250 vs mês passado</div>
+      </div>
+      <div class="report-card" onclick="showBalloon(event,'rel-winrate')">
+        <div class="rc-icon">🎯</div>
+        <div class="rc-label">Win Rate</div>
+        <div class="rc-value">40%</div>
+        <div class="rc-change">+5% vs mês passado</div>
+      </div>
+      <div class="report-card" onclick="showBalloon(event,'rel-ciclo')">
+        <div class="rc-icon">⏱️</div>
+        <div class="rc-label">Ciclo Médio</div>
+        <div class="rc-value">6 dias</div>
+        <div class="rc-change">Rápido: 2d | Lento: 12d</div>
+      </div>
+      <div class="report-card" onclick="showBalloon(event,'rel-deals')">
+        <div class="rc-icon">📊</div>
+        <div class="rc-label">Deals Fechados</div>
+        <div class="rc-value" style="color:#4ade80;">2 <span style="color:#ef4444;font-size:16px;">/ 0</span></div>
+        <div class="rc-change">Ganhos / Perdas</div>
+      </div>
+    </div>
+
+    <div class="chart-area" onclick="showBalloon(event,'grafico-receita')">
+      <div class="chart-title">Tendência de Receita — Últimos 6 meses</div>
+      <div class="fake-chart">
+        <div class="bar" style="height:15%;"></div>
+        <div class="bar" style="height:20%;"></div>
+        <div class="bar" style="height:10%;"></div>
+        <div class="bar" style="height:30%;"></div>
+        <div class="bar" style="height:45%;"></div>
+        <div class="bar" style="height:75%;"></div>
+      </div>
+      <div class="chart-labels">
+        <div class="chart-label">Out</div>
+        <div class="chart-label">Nov</div>
+        <div class="chart-label">Dez</div>
+        <div class="chart-label">Jan</div>
+        <div class="chart-label">Fev</div>
+        <div class="chart-label">Mar</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;">
+      <div class="chart-area" style="flex:1;" onclick="showBalloon(event,'rel-top')">
+        <div class="chart-title">🏆 Top Canais de Aquisição</div>
+        <div style="font-size:13px;color:#888;margin-top:8px;">
+          <div style="margin-bottom:8px;display:flex;justify-content:space-between;"><span>Indicação</span><span style="color:#a78bfa;">60%</span></div>
+          <div style="height:6px;background:#1e1040;border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:60%;background:#7c3aed;border-radius:3px;"></div></div>
+          <div style="margin-bottom:8px;display:flex;justify-content:space-between;"><span>Google Ads</span><span style="color:#a78bfa;">30%</span></div>
+          <div style="height:6px;background:#1e1040;border-radius:3px;margin-bottom:12px;"><div style="height:100%;width:30%;background:#7c3aed;border-radius:3px;"></div></div>
+          <div style="margin-bottom:8px;display:flex;justify-content:space-between;"><span>WhatsApp direto</span><span style="color:#a78bfa;">10%</span></div>
+          <div style="height:6px;background:#1e1040;border-radius:3px;"><div style="height:100%;width:10%;background:#7c3aed;border-radius:3px;"></div></div>
+        </div>
+      </div>
+      <div class="chart-area" style="flex:1;" onclick="showBalloon(event,'rel-pdf')">
+        <div class="chart-title">📄 Exportar Relatório</div>
+        <div style="font-size:13px;color:#888;margin-top:8px;">Gere um PDF completo para apresentar ao cliente ou para sua análise mensal.</div>
+        <button class="btn-primary" style="margin-top:14px;width:100%;" onclick="showBalloon(event,'rel-pdf')">⬇️ Exportar PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONFIGURAÇÕES ===== -->
+  <div class="tab-content" id="tab-configuracoes">
+    <div class="tutorial-bar"><span>💡</span> Configure aqui antes de entregar o CRM para um cliente. Clique em cada seção.</div>
+    <div class="page-title">Configurações <span class="click-hint" onclick="showBalloon(event,'config-main')">?</span></div>
+    <div class="page-sub">Personalize o CRM para cada cliente.</div>
+
+    <div class="config-tabs">
+      <div class="config-tab active" onclick="showBalloon(event,'cfg-geral')">⚙️ Geral</div>
+      <div class="config-tab" onclick="showBalloon(event,'cfg-produtos')">🛍️ Produtos/Serviços</div>
+      <div class="config-tab" onclick="showBalloon(event,'cfg-integracoes')">🔗 Integrações</div>
+      <div class="config-tab" onclick="showBalloon(event,'cfg-ia')">🤖 Central de IA</div>
+      <div class="config-tab" onclick="showBalloon(event,'cfg-dados')">📊 Dados</div>
+      <div class="config-tab" onclick="showBalloon(event,'cfg-equipe')">👥 Equipe</div>
+    </div>
+
+    <div class="config-section" onclick="showBalloon(event,'cfg-pagina')">
+      <div class="config-section-title">Página Inicial</div>
+      <div class="config-section-sub">Escolha qual tela abre quando o cliente logar.</div>
+      <select class="select-field">
+        <option>Boards (Kanban)</option>
+        <option>Inbox</option>
+        <option>Visão Geral</option>
+      </select>
+    </div>
+
+    <div class="config-section" onclick="showBalloon(event,'cfg-tags')">
+      <div class="config-section-title">🏷️ Gerenciamento de Tags</div>
+      <div class="config-section-sub">Crie tags para categorizar negócios. Ex: VIP, Urgente, Indicação.</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <input class="input-field" placeholder="Ex: VIP, Urgente, Q4..." style="flex:1;" readonly>
+        <button class="btn-primary">+ Adicionar</button>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag" style="font-size:12px;padding:4px 10px;">Urgente ✕</span>
+        <span class="tag" style="font-size:12px;padding:4px 10px;">VIP ✕</span>
+        <span class="tag" style="font-size:12px;padding:4px 10px;">Residencial ✕</span>
+        <span class="tag" style="font-size:12px;padding:4px 10px;">Comercial ✕</span>
+      </div>
+    </div>
+
+    <div class="config-section" onclick="showBalloon(event,'cfg-campos')">
+      <div class="config-section-title">📝 Campos Personalizados</div>
+      <div class="config-section-sub">Crie campos específicos do nicho. Ex: "Tipo de Entupimento", "Endereço do Serviço".</div>
+      <table style="margin-top:8px;">
+        <thead>
+          <tr>
+            <th>CAMPO</th>
+            <th>TIPO</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tipo de Serviço</td>
+            <td><span style="color:#888">Texto</span></td>
+            <td><span style="color:#ef4444;cursor:pointer;">✕</span></td>
+          </tr>
+          <tr>
+            <td>Endereço do Serviço</td>
+            <td><span style="color:#888">Texto</span></td>
+            <td><span style="color:#ef4444;cursor:pointer;">✕</span></td>
+          </tr>
+          <tr>
+            <td>Urgência</td>
+            <td><span style="color:#888">Seleção</span></td>
+            <td><span style="color:#ef4444;cursor:pointer;">✕</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- BALLOON TOOLTIP -->
+<div class="balloon" id="balloon">
+  <div class="balloon-close" onclick="closeBalloon()">✕</div>
+  <div class="balloon-title" id="balloon-title"></div>
+  <div id="balloon-body"></div>
+</div>
+
+<!-- MODAL NOVO DEAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-title">➕ Novo Deal</div>
+    <div class="modal-field">
+      <div class="modal-label">Nome do Cliente</div>
+      <input class="input-field" placeholder="Ex: João Silva">
+    </div>
+    <div class="modal-field">
+      <div class="modal-label">Valor (R$)</div>
+      <input class="input-field" placeholder="Ex: 350">
+    </div>
+    <div class="modal-field">
+      <div class="modal-label">Estágio</div>
+      <select class="input-field">
+        <option>Lead Chegou</option>
+        <option>Contato Feito</option>
+        <option>Proposta Enviada</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <div class="modal-label">Tag</div>
+      <select class="input-field">
+        <option>Urgente</option>
+        <option>VIP</option>
+        <option>Residencial</option>
+        <option>Comercial</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-primary" onclick="closeModal()">Criar Deal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// NAV
+function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('nav-' + tab).classList.add('active');
+  closeBalloon();
+}
+
+// MODAL
+function showModal() { document.getElementById('modal').classList.add('show'); }
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+// BALLOON
+const balloons = {
+  'inbox-main': ['📥 O que é o Inbox?', 'É sua mesa de trabalho diária. Todo dia ao abrir o CRM, começa aqui. Ele mostra de forma resumida tudo que precisa de atenção: tarefas atrasadas, o que fazer hoje, alertas de deals parados e oportunidades de vender mais para quem já é cliente.'],
+  'atrasados': ['⚠️ Atrasados', 'Tarefas que tinham prazo e não foram feitas. Se esse número for maior que 0, é o primeiro que você resolve. Um atrasado virado rotina = deal perdido.'],
+  'hoje': ['📅 Hoje', 'Tudo que foi agendado para o dia de hoje. Ligações, mensagens, reuniões. Você zera esse número antes de criar qualquer tarefa nova.'],
+  'sugestoes': ['🤖 Sugestões Críticas', 'A IA analisa o pipeline e identifica situações que precisam de ação urgente. Ex: "O lead João Silva não recebeu contato há 2 dias — probabilidade de esfriamento alta".'],
+  'pendencias': ['📋 Pendências', 'Backlog de tarefas sem data definida. Não são urgentes, mas precisam ser feitas. Revisa uma vez por semana.'],
+  'risco': ['⚠️ Risco — Deals parados', 'Deals que ficaram parados numa etapa por muitos dias. O CRM detecta automaticamente e avisa. Um deal parado é dinheiro esquecido na mesa. A ação correta é ligar, mandar mensagem ou marcar como perdido e liberar sua energia.'],
+  'upsell': ['📈 Oportunidades de Upsell', 'Clientes ativos que têm perfil para comprar um serviço adicional. Ex: desentupidora que já usa CRM → oferecer SmartZap. A IA identifica o momento certo com base no tempo de relacionamento.'],
+  'btn-foco': ['🎯 Modo Foco', 'Entra em modo concentrado: mostra uma tarefa por vez, sem distrações. Ideal para o momento de trabalho intenso. A IA sugere a ordem das tarefas por prioridade.'],
+  'visao-lista': ['≡ Lista', 'Muda a visualização do Inbox para formato de lista — todas as tarefas em ordem cronológica, como um to-do tradicional.'],
+  'visao-foco': ['🎯 Foco', 'Visualização minimalista: uma tarefa por vez. Você conclui, ela some, aparece a próxima. Zero distração.'],
+  'inbox-visaogeral': ['Diagnóstico rápido', 'Diferente da aba "Visão Geral" (que mostra dados e gráficos), esse painel aqui no Inbox é só o resumo de ação: o que está em risco e o que você pode ganhar hoje.'],
+  'vg-main': ['📊 Visão Geral', 'O painel financeiro da operação. Mostra os números do mês atual e compara com o mês anterior. Use uma vez por semana para saber se está crescendo ou estagnando.'],
+  'vg-pipeline': ['💰 Pipeline Total', 'Soma de todos os deals abertos (em negociação ativa). É o dinheiro potencial que você pode fechar esse mês. Se esse número for baixo, precisa prospectar mais.'],
+  'vg-ativos': ['👥 Negócios Ativos', 'Quantidade de deals em andamento agora. Cada deal é uma conversa de venda ativa. Saudável para uma agência pequena: entre 5 e 20 simultâneos.'],
+  'vg-conversao': ['🎯 Conversão', 'De cada 100 leads que entram, quantos viram clientes (%). Se estiver em 33%, de 3 leads 1 fecha. Justin Brooke diria: meça isso todo mês — é seu KPI mais importante.'],
+  'vg-receita': ['📈 Receita Ganha', 'Valor real que entrou (deals marcados como "Fechado"). É diferente do Pipeline — aqui é o dinheiro que você pode cobrar.'],
+  'saude-carteira': ['Saúde da Carteira', 'Análise da qualidade da sua base de clientes atuais. Ativos (comprando), Inativos (pararam de responder) e Churn (cancelaram). Manter mais de 80% ativo é saudável.'],
+  'distribuicao': ['Distribuição da Carteira', 'Verde = clientes ativos e pagando. Amarelo = inativos (precisam de reengajamento). Vermelho = churn (perdidos). O objetivo é manter a barra quase toda verde.'],
+  'parados': ['Negócios Parados', 'Deals que não mudaram de etapa nos últimos 10 dias. Cada deal parado representa dinheiro parado. A ação é simples: ligue ou descarte. Não deixe acumular.'],
+  'ltv': ['LTV Médio', 'Lifetime Value — quanto um cliente gera no total enquanto fica com você. Para uma desentupidora: se um cliente paga R$350/serviço e chama 3 vezes/ano = LTV de R$1.050/ano.'],
+  'boards-main': ['🗂️ Boards — O Kanban', 'É o coração do CRM. Visualiza sua operação de vendas como um quadro com colunas. Cada coluna é uma etapa da venda. Cada card é um negócio. Você literalmente arrasta o cliente de coluna em coluna conforme avança. É impossível esquecer um lead aqui.'],
+  'col-lead': ['🟢 Lead Chegou', 'Primeira etapa. Todo novo contato entra aqui. A regra é: em até 24h faz o primeiro contato e move para "Contato Feito". Lead sem contato rápido = lead frio.'],
+  'col-contato': ['📞 Contato Feito', 'Já falou com a pessoa. Agora o objetivo é qualificar (tem problema real? tem dinheiro? tem urgência?) e preparar uma proposta.'],
+  'col-proposta': ['📄 Proposta Enviada', 'Proposta foi enviada. Agora é follow-up. Máximo 2 dias sem resposta = liga de resgate. O card em amarelo no seu board está exatamente aqui — parado há 8 dias. Isso é dinheiro em risco.'],
+  'col-fechado': ['✅ Fechado', 'Deal ganho! Quando um card chega aqui, registra o valor e a receita aparece automaticamente nos Relatórios. Também é daqui que sai o LTV médio.'],
+  'col-perdido': ['❌ Perdido', 'Não fechou. É importante marcar como perdido (e não simplesmente deixar parado) para manter os dados limpos. Você pode ver depois o motivo mais comum de perda e melhorar sua abordagem.'],
+  'deal-joao': ['Card de Deal — João Silva', 'Cada card representa um negócio ativo. Mostra: nome, valor estimado, tags e responsável. Clique no card para ver todo o histórico de interações, anotações e atividades vinculadas a esse deal.'],
+  'deal-parado': ['⚠️ Deal Parado — Condomínio Vista', 'Esse card está marcado em amarelo porque ficou 8 dias sem movimentação. A ação recomendada pelo Inbox é ligar hoje para o responsável do condomínio. Proposta de R$1.800 em risco.'],
+  'deal-fechado': ['✅ Deal Fechado — Ana Costa', 'Deal ganho. R$450 já entram nos Relatórios de Receita. A Ana agora vira contato com status "Cliente" e pode receber upsell futuramente.'],
+  'deal-fechado2': ['✅ Deal Fechado — Pedro Alves', 'Segundo deal fechado do mês. Com 2 fechamentos e 1 em risco, seu Win Rate está em 40% — acima da média de agências iniciantes (que fica em 20-25%).'],
+  'deal-maria': ['Card — Maria Oliveira', 'Lead novo. Tag "Residencial" indica que é um serviço residencial (menor ticket que comercial). Próximo passo: ligar e qualificar.'],
+  'deal-carlos': ['Card — Carlos Mendes', 'Tags "Comercial" + "VIP" = cliente de alto valor. Recebe atenção prioritária. Deal de R$620 — maior ticket de serviço residencial do pipeline atual.'],
+  'contatos-main': ['👥 Contatos', 'Sua agenda inteligente integrada ao funil. Diferente de uma agenda comum, aqui você vê em qual etapa de negociação cada pessoa está, há quanto tempo conhece ela, e todo o histórico de interações. Cadastre todo mundo aqui — mesmo quem ainda não é cliente.'],
+  'busca-contato': ['Busca Rápida', 'Digitou o nome, telefone ou e-mail — aparece o contato imediatamente. Ideal quando recebe uma ligação e precisa ver rapidamente o histórico da pessoa.'],
+  'novo-contato': ['+ Novo Contato', 'Abre um formulário para cadastrar lead, prospect ou cliente. Campos: Nome, E-mail, Telefone, Empresa, Estágio no funil. Depois de criado, você vincula a um deal no Board.'],
+  'filtro-todos': ['Filtro: Todos', 'Mostra toda sua base de contatos. Use quando quiser ter uma visão geral ou fazer uma ação em massa (ex: exportar lista completa).'],
+  'filtro-leads': ['Filtro: Leads', 'Contatos que ainda não foram qualificados. Entraram em contato ou foram cadastrados mas você ainda não sabe se têm fit. Revisita esses regularmente.'],
+  'filtro-mql': ['MQL — Marketing Qualified Lead', 'Lead que a IA ou você marcou como qualificado: tem o problema que você resolve, tem perfil de cliente ideal. Prioridade de abordagem.'],
+  'filtro-prospects': ['Filtro: Prospects', 'Está em negociação ativa. Proposta enviada ou em andamento. São os mais próximos de virar clientes.'],
+  'filtro-clientes': ['Filtro: Clientes', 'Já fecharam. São os mais valiosos — custam menos para manter do que para adquirir. Revisa regularmente para upsell e retenção.'],
+  'filtro-perdidos': ['Outros / Perdidos', 'Contatos que não avançaram. Importante manter registrados — pode reativar no futuro ou entender padrões de objeção.'],
+  'contato-joao': ['Contato — João Silva', 'Clicando aqui você abriria o perfil completo: histórico de conversas, atividades feitas, deals vinculados, anotações. É o dossiê completo desse lead.'],
+  'contato-condo': ['Contato — Condomínio Vista', 'Prospect em risco — proposta enviada há 8 dias sem resposta. Ao clicar, você veria o botão "Criar Atividade" para agendar a ligação de resgate.'],
+  'contato-ana': ['Contato — Ana Costa', 'Já é cliente. Ao abrir o perfil, você verá o histórico de todos os serviços prestados e um indicador de "Oportunidade de Upsell" baseado no tempo de relacionamento.'],
+  'ativ-main': ['✅ Atividades', 'Sua lista de tarefas vinculadas a negócios reais. Diferente de um to-do comum, cada atividade aqui está conectada a um contato e um deal específico — você nunca perde o contexto do porquê está fazendo aquela tarefa.'],
+  'nova-ativ': ['+ Nova Atividade', 'Cria tarefa manual. Você escolhe: tipo (ligação, mensagem, reunião, tarefa), data/hora, e vincula a um contato ou deal. Ela aparece automaticamente no Inbox no dia correto.'],
+  'ativ-late': ['⚫ Atividade Atrasada', 'Vermelho = estava para ser feita no passado e não foi. Essa é a mais crítica — o Condomínio Vista já está esperando. Cada dia de atraso reduz a chance de fechar.'],
+  'ativ-hoje1': ['Atividade de Hoje — Mensagem', 'Amarelo = pendente para hoje. Enviar orçamento para João Silva. Ao concluir, o bullet vira verde e a atividade sai do Inbox. Simples assim.'],
+  'ativ-hoje2': ['Atividade de Hoje — Reunião', 'Reunião de apresentação marcada para 15h. O CRM não envia notificação push ainda (isso conecta via SmartZap), mas aparece todo dia no Inbox.'],
+  'ativ-hoje3': ['Atividade de Hoje — Tarefa', 'Atualizar proposta. Tarefa interna — não é uma comunicação com cliente, é algo que você precisa fazer para avançar o deal.'],
+  'ativ-feita': ['✅ Atividade Concluída', 'Verde e riscada = feita. O CRM registra automaticamente a data/hora de conclusão. Isso gera o histórico de interações do contato — você sempre sabe a última vez que falou com alguém.'],
+  'rel-main': ['📈 Relatórios', 'Análise completa de performance. Use uma vez por mês para entender o que está funcionando. A lógica é simples: Win Rate caindo = problema no processo de venda. Ciclo aumentando = proposta demorando. Receita caindo = pipeline vazio.'],
+  'rel-pipeline': ['Pipeline Total nos Relatórios', 'Aqui mostra o valor histórico dos deals — não só o atual. Você consegue ver a tendência: o pipeline está crescendo ou encolhendo mês a mês?'],
+  'rel-winrate': ['Win Rate — Taxa de Fechamento', 'O indicador mais honesto do seu processo de venda. 40% significa que de cada 10 propostas, 4 fecham. Abaixo de 20%: problema de qualificação (está mandando proposta para quem não tem fit). Acima de 60%: seus leads chegam muito qualificados.'],
+  'rel-ciclo': ['Ciclo Médio de Venda', 'Quantos dias leva do primeiro contato até o fechamento. Para desentupidora: 6 dias é bom (serviço de urgência). Para agência de marketing: ciclo de 15-30 dias é normal. Se aumentar, alguém está demorando para tomar decisão — investiga a etapa "Proposta Enviada".'],
+  'rel-deals': ['Deals Fechados: Ganhos vs Perdas', '2 ganhos, 0 perdas. Para análise real você quer ver os motivos de perda — por isso é importante SEMPRE marcar o deal como perdido (não deixar parado) e registrar o motivo. Com 5+ perdas registradas, a IA começa a sugerir padrões.'],
+  'grafico-receita': ['Tendência de Receita', 'Gráfico dos últimos 6 meses. O crescimento de Mar está acelerando (barra maior) — indica que a operação está ganhando tração. Use esse gráfico para mostrar ao cliente da VaiAnuncio que o CRM está ajudando a crescer.'],
+  'rel-top': ['Top Canais de Aquisição', 'Mostra de onde vêm seus clientes. 60% indicação = sua aquisição está muito dependente de uma fonte que você não controla. Justin Brooke diria: "Estruture um canal próprio (Google Ads ou outbound) para não depender só de indicação."'],
+  'rel-pdf': ['📄 Exportar PDF', 'Gera relatório completo em PDF. Use no fim do mês para apresentar para o dono da empresa: "Esse mês você atendeu X clientes, fechou R$Y, sua taxa de conversão foi Z%." Isso justifica o investimento no CRM e no seu serviço.'],
+  'config-main': ['⚙️ Configurações', 'Aqui você personaliza o CRM para cada cliente antes de entregar. É o que você faz no onboarding: configura o funil, as tags do nicho, os campos específicos, integra o WhatsApp e configura a IA.'],
+  'cfg-geral': ['Configurações Gerais', 'Define comportamentos básicos do sistema: qual tela abre primeiro ao logar, gerenciamento de tags (categorias dos deals) e campos personalizados (campos específicos do negócio do cliente).'],
+  'cfg-produtos': ['Produtos/Serviços', 'Cadastre os serviços que o cliente vende. Ex: desentupidora → "Desentupimento Residencial R$350", "Desentupimento Comercial R$600". Esses valores aparecem como sugestão ao criar um deal.'],
+  'cfg-integracoes': ['Integrações', 'Conecta o CRM com o WhatsApp (SmartZap), e-mail, formulários. É aqui que os leads do WhatsApp entram automaticamente como contatos no CRM — sem digitar manualmente.'],
+  'cfg-ia': ['Central de IA', 'Define qual modelo de IA o CRM vai usar para as sugestões, scripts e análises. Pode usar Claude (Anthropic), GPT-4 ou Gemini. Quanto melhor o modelo, mais precisa as sugestões do Inbox.'],
+  'cfg-dados': ['Dados', 'Importa contatos em CSV (planilha Excel) ou exporta toda a base. Quando pegar um cliente que já tem uma planilha de leads, você importa aqui e em segundos todos os contatos estão no CRM.'],
+  'cfg-equipe': ['Equipe', 'Adiciona outros usuários ao CRM. Ex: se a desentupidora tiver um atendente, você cria o login dele aqui. Ele vê e trabalha nos deals — você monitora tudo como admin.'],
+  'cfg-pagina': ['Página Inicial', 'Define qual tela abre quando o usuário loga. Para a maioria dos clientes, "Boards (Kanban)" é o melhor — eles veem imediatamente o funil e o que precisam fazer.'],
+  'cfg-tags': ['Tags', 'Etiquetas que você cola nos deals para categorizar. Ex para desentupidora: "Urgente" (precisa de serviço hoje), "VIP" (cliente recorrente de alto valor), "Comercial" (empresa, maior ticket). Filtra por tag para ver só os deals urgentes, por exemplo.'],
+  'cfg-campos': ['Campos Personalizados', 'O poder do CRM personalizado. Para cada nicho, você cria campos específicos que aparecem dentro do deal. Para desentupidora: "Tipo de Entupimento", "Endereço do Serviço", "Urgência". Para clínica: "Plano de Saúde", "Especialidade". Isso diferencia um CRM genérico do SEU CRM especializado por nicho.'],
+};
+
+function showBalloon(event, key) {
+  event.stopPropagation();
+  const data = balloons[key];
+  if (!data) return;
+  const b = document.getElementById('balloon');
+  document.getElementById('balloon-title').textContent = data[0];
+  document.getElementById('balloon-body').textContent = data[1];
+  b.classList.add('show');
+  const x = Math.min(event.clientX + 14, window.innerWidth - 300);
+  const y = Math.min(event.clientY - 10, window.innerHeight - 200);
+  b.style.left = x + 'px';
+  b.style.top = y + 'px';
+}
+
+function closeBalloon() {
+  document.getElementById('balloon').classList.remove('show');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.balloon') && !e.target.closest('[onclick]')) closeBalloon();
+});
+</script>
+</body>
+</html>

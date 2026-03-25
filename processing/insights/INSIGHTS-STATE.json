@@ -1,0 +1,868 @@
+{
+  "insights_state": {
+    "persons": {
+      "Russell Brunson": [
+        {
+          "id": "FIL-RB036-001",
+          "layer": "FIL",
+          "titulo": "Expertise como Obrigacao Moral",
+          "insight": "Todo especialista com conhecimento que transforma vidas tem obrigacao moral de compartilha-lo e vende-lo; nao vender e deixar pessoas sofrendo desnecessariamente",
+          "chunk_ref": "RB036_001",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_001"
+          ]
+        },
+        {
+          "id": "FIL-RB036-002",
+          "layer": "FIL",
+          "titulo": "Voce E Um Produto do Produto",
+          "insight": "Para vender com autenticidade e congruencia, o especialista precisa ser o primeiro cliente de sua propria transformacao e acreditar profundamente no que ensina",
+          "chunk_ref": "RB036_002",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_002"
+          ]
+        },
+        {
+          "id": "FIL-RB036-003",
+          "layer": "FIL",
+          "titulo": "Movimento de Massa E Superior a Audiencia",
+          "insight": "Construir um movimento cultural (cult-ure) com lider carismatico, causa futura e nova oportunidade gera comprometimento e lealdade muito alem de uma simples lista de seguidores",
+          "chunk_ref": "RB036_003",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_003"
+          ]
+        },
+        {
+          "id": "FIL-RB036-004",
+          "layer": "FIL",
+          "titulo": "Dinheiro Segue Velocidade",
+          "insight": "A capacidade de agir rapidamente - criar e lancar uma apresentacao, oferta ou funil em horas em vez de semanas - e uma vantagem competitiva decisiva no mercado de especialistas",
+          "chunk_ref": "RB036_004",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_004"
+          ]
+        },
+        {
+          "id": "FIL-RB036-005",
+          "layer": "FIL",
+          "titulo": "Vender E Servir",
+          "insight": "Quando pessoas pagam por uma transformacao, o ato financeiro cria responsabilidade e comprometimento que aumenta a probabilidade de obterem os resultados; nao cobrar diminui o impacto",
+          "chunk_ref": "RB036_005",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_005"
+          ]
+        },
+        {
+          "id": "FIL-RB036-006",
+          "layer": "FIL",
+          "titulo": "Repeticao Bate Novidade",
+          "insight": "Apresentar o mesmo webinar toda semana por 12 meses consecutivos gera mais riqueza e refinamento do que criar novos produtos mensalmente; consistencia supera variedade",
+          "chunk_ref": "RB036_006",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_006"
+          ]
+        },
+        {
+          "id": "FIL-RB036-007",
+          "layer": "FIL",
+          "titulo": "Nova Oportunidade vs Melhoria",
+          "insight": "Oferecer uma nova oportunidade (ocean azul) converte muito mais do que propor uma melhoria de algo existente, pois elimina resistencia comparativa e posiciona o especialista como pioneiro",
+          "chunk_ref": "RB036_007",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_007"
+          ]
+        },
+        {
+          "id": "FIL-RB036-008",
+          "layer": "FIL",
+          "titulo": "Status Governa Decisoes de Compra",
+          "insight": "Toda decisao de compra e motivada em ultima instancia pelo desejo de elevar ou proteger o status percebido pelo comprador; entender isso e a chave da persuasao",
+          "chunk_ref": "RB036_008",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_008"
+          ]
+        },
+        {
+          "id": "FIL-RB036-009",
+          "layer": "FIL",
+          "titulo": "Crescimento Sem Contribuicao E Incompleto",
+          "insight": "O verdadeiro cumprimento humano requer dois estagios: primeiro crescimento pessoal, depois contribuicao para outros; o negocio de especialista e o veiculo da contribuicao",
+          "chunk_ref": "RB036_009",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_009"
+          ]
+        },
+        {
+          "id": "FIL-RB036-010",
+          "layer": "FIL",
+          "titulo": "Trafego Existe, Nao Se Cria",
+          "insight": "As pessoas ja estao online procurando solucoes; a tarefa do especialista nao e criar demanda do zero, mas posicionar sua nova oportunidade no caminho de quem ja esta buscando",
+          "chunk_ref": "RB036_010",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FIL]"
+          ],
+          "chunks": [
+            "RB036_010"
+          ]
+        },
+        {
+          "id": "MM-RB036-001",
+          "layer": "MM",
+          "titulo": "O Big Domino (Modus Ponens de Crenca)",
+          "insight": "Se o especialista conseguir fazer o prospecto acreditar em UMA crenca central (o domino maior), todas as outras objecoes caem automaticamente; toda apresentacao deve identificar e derruba-la",
+          "chunk_ref": "RB036_011",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_011"
+          ]
+        },
+        {
+          "id": "MM-RB036-002",
+          "layer": "MM",
+          "titulo": "As Duas Jornadas do Heroi",
+          "insight": "Toda grande historia contem duas jornadas simultaneas: a Jornada de Conquista (meta externa visivel) e a Jornada de Transformacao (mudanca interna invisivel); a segunda e o que gera conexao emocional",
+          "chunk_ref": "RB036_012",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_012"
+          ]
+        },
+        {
+          "id": "MM-RB036-003",
+          "layer": "MM",
+          "titulo": "Padroes de Falsa Crenca (3 Categorias)",
+          "insight": "Todos os obstaculos de compra se encaixam em tres categorias de falsa crenca: sobre o Veiculo (a solucao em si), sobre Capacidade Interna (se eles conseguem fazer) e sobre Forcas Externas (o que impede de fora)",
+          "chunk_ref": "RB036_013",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_013"
+          ]
+        },
+        {
+          "id": "MM-RB036-004",
+          "layer": "MM",
+          "titulo": "O Indice Prolifico",
+          "insight": "Existe um espectro entre mainstream (sem diferenciacao) e insanidade (sem credibilidade); o Prolific Index e o ponto ideal onde a nova oportunidade parece nova e empolgante sem parecer absurda",
+          "chunk_ref": "RB036_014",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_014"
+          ]
+        },
+        {
+          "id": "MM-RB036-005",
+          "layer": "MM",
+          "titulo": "Curiosidade Governa Registro e Presenca",
+          "insight": "O unico motor que leva pessoas a se registrarem para um webinar e comparecerem e a curiosidade nao resolvida; revelar demais na pagina de captura destroi o incentivo de aparecer",
+          "chunk_ref": "RB036_015",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_015"
+          ]
+        },
+        {
+          "id": "MM-RB036-006",
+          "layer": "MM",
+          "titulo": "Compradores em Movimento Ficam em Movimento",
+          "insight": "Uma pessoa que compra algo (mesmo barato) antes do webinar tem muito mais probabilidade de comprar no webinar; o estado de ser comprador ativo aumenta propensao a compras subsequentes",
+          "chunk_ref": "RB036_016",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_016"
+          ]
+        },
+        {
+          "id": "MM-RB036-007",
+          "layer": "MM",
+          "titulo": "O Leve Para a Estrada",
+          "insight": "Em vez de criar novo produto todo mes para a mesma audiencia, a escala real vem de levar a mesma apresentacao refinada para audiencias novas continuamente",
+          "chunk_ref": "RB036_017",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_017"
+          ]
+        },
+        {
+          "id": "MM-RB036-008",
+          "layer": "MM",
+          "titulo": "Ensinar Cria Ceticismo, Historias Criam Crenca",
+          "insight": "O cerebro rejeita ensinamentos diretos com mecanismo de defesa, mas absorve conclusoes identicas quando chegam atraves de historias pessoais vividas",
+          "chunk_ref": "RB036_018",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_018"
+          ]
+        },
+        {
+          "id": "MM-RB036-009",
+          "layer": "MM",
+          "titulo": "Dream 100 - O Trafego Ja Tem Dono",
+          "insight": "Para cada nova oportunidade existem aproximadamente 100 influenciadores que ja possuem a atencao dos clientes ideais; infiltrar esses 100 e mais rapido do que construir audiencia do zero",
+          "chunk_ref": "RB036_019",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_019"
+          ]
+        },
+        {
+          "id": "MM-RB036-010",
+          "layer": "MM",
+          "titulo": "Automacao Prematura Congela o Aperfeicoamento",
+          "insight": "Automatizar um webinar antes de apresenta-lo ao vivo dezenas de vezes elimina o feedback loop que refina objecoes, exemplos e historias; ao vivo primeiro, automacao depois",
+          "chunk_ref": "RB036_020",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[MM]"
+          ],
+          "chunks": [
+            "RB036_020"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-001",
+          "layer": "HEUR",
+          "titulo": "Custo por Registrante Entre $3 e $5",
+          "insight": "O ponto de equilibrio saudavel para trafego pago em funil de webinar e $3-$5 por registrante; acima de $7-$8 torna-se dificil ser lucrativo no front-end sem otimizacao das demais metricas",
+          "chunk_ref": "RB036_021",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_021"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-002",
+          "layer": "HEUR",
+          "titulo": "Taxa de Comparecimento de 25%",
+          "insight": "Em media, 25% dos registrantes aparecem ao vivo; taxas menores indicam que a sequencia de indoctrinacao e lembretes precisa ser reforcada para proteger o custo de aquisicao",
+          "chunk_ref": "RB036_022",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_022"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-003",
+          "layer": "HEUR",
+          "titulo": "5% Fechamento = Webinar Lucrativo",
+          "insight": "Taxa de fechamento de 5% indica webinar viavel; 10% de fechamento = webinar de um milhao de dolares por ano; acima de 10% = escala exponencial",
+          "chunk_ref": "RB036_023",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_023"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-004",
+          "layer": "HEUR",
+          "titulo": "Dobrar Vendas no Follow-Up de Replay",
+          "insight": "Implementar sequencia de replay de sexta a domingo com urgencia e escassidade reais geralmente dobra as vendas totais em relacao ao que foi vendido durante a apresentacao ao vivo",
+          "chunk_ref": "RB036_024",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_024"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-005",
+          "layer": "HEUR",
+          "titulo": "SLO Entre $37 e $47 na Pagina de Obrigado",
+          "insight": "Uma oferta de liquidacao automatica de $37-$47 na thank-you page pode cobrir integralmente os custos de anuncios e transforma compradores pre-webinar em leads mais qualificados",
+          "chunk_ref": "RB036_025",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_025"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-006",
+          "layer": "HEUR",
+          "titulo": "Webinar de 90 Minutos 60+30",
+          "insight": "A estrutura ideal divide o webinar em 60 minutos de conteudo (quebrar e reconstruir falsas crencas) + 30 minutos de pitch (stack + closes + Q&A com fechamentos intercalados)",
+          "chunk_ref": "RB036_026",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_026"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-007",
+          "layer": "HEUR",
+          "titulo": "Minimo 60 Apresentacoes Antes de Automatizar",
+          "insight": "Apresentar o mesmo webinar ao vivo pelo menos 60 vezes garante que todas as objecoes estejam cobertas, exemplos refinados e taxa de conversao estabilizada antes de automatizar",
+          "chunk_ref": "RB036_027",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_027"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-008",
+          "layer": "HEUR",
+          "titulo": "4 Tipos de Controladores de Trafego no Dream 100",
+          "insight": "O mercado-alvo de trafego se divide em quatro categorias: donos de listas de e-mail, bloggers, podcasters e influenciadores de redes sociais; buscar 25 de cada tipo forma o Dream 100 completo",
+          "chunk_ref": "RB036_028",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_028"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-009",
+          "layer": "HEUR",
+          "titulo": "Alto Ticket Acima de $2997 Requer Ligacao",
+          "insight": "Para ofertas acima de $2.997 a $100.000, o processo de vendas deve incluir aplicacao + entrevista telefonica de 30 minutos; a ligacao aumenta conforto e permite filtragem de clientes adequados",
+          "chunk_ref": "RB036_029",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_029"
+          ]
+        },
+        {
+          "id": "HEUR-RB036-010",
+          "layer": "HEUR",
+          "titulo": "Stack Deve Ter Valor 10x o Preco",
+          "insight": "O valor total percebido dos elementos empilhados no Stack Slide deve ser pelo menos 10 vezes o preco cobrado, criando uma sensacao irresistivel de barganha no prospecto",
+          "chunk_ref": "RB036_030",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[HEUR]"
+          ],
+          "chunks": [
+            "RB036_030"
+          ]
+        },
+        {
+          "id": "FW-RB036-001",
+          "layer": "FW",
+          "titulo": "Massa em Movimento (3 Componentes)",
+          "insight": "Todo movimento de massa bem-sucedido requer: (1) Lider Carismatico com Personagem Atraente, (2) Causa Futura que inspira esperanca, (3) Nova Oportunidade que permite Mudanca de Oportunidade (Opportunity Switch)",
+          "chunk_ref": "RB036_031",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_031"
+          ]
+        },
+        {
+          "id": "FW-RB036-002",
+          "layer": "FW",
+          "titulo": "Script da Ponte Epifania (8 Partes)",
+          "insight": "Estrutura completa da historia que cria crenca: (1) Personagem, (2) Desejo, (3) Conflito, (4) Mentor, (5) Plano, (6) Tentativa, (7) Conquista Inesperada, (8) Transformacao; aplica-se a historia de origem e as 3 historias dos Segredos",
+          "chunk_ref": "RB036_032",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_032"
+          ]
+        },
+        {
+          "id": "FW-RB036-003",
+          "layer": "FW",
+          "titulo": "Os 3 Segredos (Estrutura da Apresentacao)",
+          "insight": "A secao de conteudo do Perfect Webinar ataca tres falsas crencas em sequencia: Segredo #1 elimina falsa crenca sobre o Veiculo, Segredo #2 sobre capacidade interna, Segredo #3 sobre forcas externas - cada um entregue via Epiphany Bridge Story",
+          "chunk_ref": "RB036_033",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_033"
+          ]
+        },
+        {
+          "id": "FW-RB036-004",
+          "layer": "FW",
+          "titulo": "Stack Slide (6 Elementos Visuais)",
+          "insight": "A pilha de valor e apresentada visualmente acumulando: (1) Oferta principal, (2) Framework especial, (3) Stack de velocidade, (4) Valor exclusivo, (5) Garantia + eliminacao de risco, (6) Urgencia/Escassez; valor total revelado antes do preco",
+          "chunk_ref": "RB036_034",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_034"
+          ]
+        },
+        {
+          "id": "FW-RB036-005",
+          "layer": "FW",
+          "titulo": "4-Question Close (Script de Alto Ticket)",
+          "insight": "Framework de fechamento em quatro fases: Q1 (visao de futuro), Q2 (obstaculos), Q3 (recursos subutilizados disponiveis), Q4 (pergunta final: Quer que eu te ajude?) + silencio",
+          "chunk_ref": "RB036_035",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_035"
+          ]
+        },
+        {
+          "id": "FW-RB036-006",
+          "layer": "FW",
+          "titulo": "Modelo de Webinar Semanal (7 Etapas)",
+          "insight": "Ciclo operacional completo: (1) Trafego para registro Seg-Qui, (2) Obrigado + SLO, (3) E-mails de indoctrinacao (3 videos), (4) Lembretes, (5) Webinar ao vivo Quinta, (6) Replay + urgencia Sex-Dom, (7) Fechar carrinho meia-noite Domingo",
+          "chunk_ref": "RB036_036",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_036"
+          ]
+        },
+        {
+          "id": "FW-RB036-007",
+          "layer": "FW",
+          "titulo": "Email Epiphany Funnel (Soap Opera Sequence)",
+          "insight": "Adaptacao do Perfect Webinar para e-mail: cada e-mail entrega uma das 4 historias centrais (origem + 3 Segredos) conectadas em sequencia de soap opera com ganchos no final de cada e-mail que puxam para o proximo",
+          "chunk_ref": "RB036_037",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_037"
+          ]
+        },
+        {
+          "id": "FW-RB036-008",
+          "layer": "FW",
+          "titulo": "Perfect Webinar Hack (Whiteboard em 15 Minutos)",
+          "insight": "Framework de 5 perguntas para criar qualquer apresentacao em minutos: Q1 (nova oportunidade), Q2 (Big Domino), Q3 (stack especial), Q4 (historia de origem), Q5 (tres falsas crencas + tres historias de resposta)",
+          "chunk_ref": "RB036_038",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_038"
+          ]
+        },
+        {
+          "id": "FW-RB036-009",
+          "layer": "FW",
+          "titulo": "Dream 100 - 3 Estrategias de Promocao",
+          "insight": "Sistema de aquisicao de trafego em tres camadas: (1) JV/Parceiros promovendo diretamente, (2) Anuncios pagos segmentados nos seguidores do Dream 100, (3) Marketing de integracao no fluxo de vendas do Dream 100",
+          "chunk_ref": "RB036_039",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_039"
+          ]
+        },
+        {
+          "id": "FW-RB036-010",
+          "layer": "FW",
+          "titulo": "Epiphany Product Launch Funnel",
+          "insight": "Reempacotamento do Perfect Webinar em lancamento de produto: opt-in -> Video 1 (nova oportunidade), Video 2 (crenca interna), Video 3 (crenca externa), Video 4 (stack + fechamento); alternativa para audiencias que nao assistiram ao webinar",
+          "chunk_ref": "RB036_040",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "MEDIUM",
+          "confidence": 0.9,
+          "tags": [
+            "[FW]"
+          ],
+          "chunks": [
+            "RB036_040"
+          ]
+        },
+        {
+          "id": "MET-RB036-001",
+          "layer": "MET",
+          "titulo": "Como Encontrar Sua Nova Oportunidade",
+          "insight": "Passo a passo: (1) Escolher um dos 3 mercados quentes (saude, riqueza, relacionamentos), (2) Drill-down em sub-nicho, (3) Identificar posicionamento no Prolific Index, (4) Criar oportunidade nova (nao melhoria), (5) Criar headline Who/What Statement",
+          "chunk_ref": "RB036_041",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_041"
+          ]
+        },
+        {
+          "id": "MET-RB036-002",
+          "layer": "MET",
+          "titulo": "Como Construir o Personagem Atraente",
+          "insight": "Processo: (1) Escolher backstory de origem com falha relevante, (2) Definir polaridade clara, (3) Revelar falha de carater (humaniza), (4) Assumir papel do Heroi Relutante; resultado cria identificacao e lideranca",
+          "chunk_ref": "RB036_042",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_042"
+          ]
+        },
+        {
+          "id": "MET-RB036-003",
+          "layer": "MET",
+          "titulo": "Como Criar a Declaracao do Big Domino",
+          "insight": "Metodologia: (1) Listar todas as crencas necessarias para a compra, (2) Identificar qual crenca, se aceita, torna todas as demais obvias, (3) Formular em modus ponens: Se acreditar em X (nova oportunidade), entao Y (solucao) e o unico caminho logico",
+          "chunk_ref": "RB036_043",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_043"
+          ]
+        },
+        {
+          "id": "MET-RB036-004",
+          "layer": "MET",
+          "titulo": "Como Executar a Campanha Ask",
+          "insight": "Sistema de descoberta de mercado: (1) Entrar onde o mercado se reune, (2) Oferecer algo gratuito para construir lista, (3) Enviar sondagem O que mais te impede de [resultado]? (4) Agrupar respostas e criar oferta baseada nas mais frequentes",
+          "chunk_ref": "RB036_044",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_044"
+          ]
+        },
+        {
+          "id": "MET-RB036-005",
+          "layer": "MET",
+          "titulo": "Como Construir o Stack Slide Completo",
+          "insight": "Processo: (1) Listar todos os elementos com valor individual, (2) Organizar em ordem crescente de impacto, (3) Atribuir valor percebido a cada item, (4) Acumular visualmente elemento por elemento, (5) Revelar total antes do preco, (6) Aplicar closes entre cada elemento novo",
+          "chunk_ref": "RB036_045",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_045"
+          ]
+        },
+        {
+          "id": "MET-RB036-006",
+          "layer": "MET",
+          "titulo": "Como Refinar o Webinar Via Iteracao Ao Vivo",
+          "insight": "Ciclo de melhoria: (1) Apresentar ao vivo, (2) Exportar perguntas do chat, (3) Identificar pontos de confusao e objecoes nao cobertas, (4) Atualizar slides e historias, (5) Repetir por 60+ apresentacoes; cada iteracao aumenta taxa de fechamento",
+          "chunk_ref": "RB036_046",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_046"
+          ]
+        },
+        {
+          "id": "MET-RB036-007",
+          "layer": "MET",
+          "titulo": "Como Aplicar o 4-Question Close na Pratica",
+          "insight": "Protocolo: (1) Estabelecer regras, (2) Q1 extrair visao de futuro cavando ate desejos internos, (3) Q2 identificar obstaculos ouvindo quem usa linguagem de responsabilidade pessoal, (4) Q3 inventariar recursos subutilizados, (5) Resumir pontos 1-3, (6) Q4 Quer que eu te ajude? + silencio total",
+          "chunk_ref": "RB036_047",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_047"
+          ]
+        },
+        {
+          "id": "MET-RB036-008",
+          "layer": "MET",
+          "titulo": "Como Infiltrar o Dream 100 em 3 Estrategias",
+          "insight": "Processo sequencial: (1) Seguir, assinar, comprar (construir familiaridade antes do contato), (2) Entrevistar para podcast/blog (plataforma de relacionamento mutuo de 30-60 minutos), (3) Perguntar sobre projeto mais importante e oferecer valor proativo; so entao pedir promocao",
+          "chunk_ref": "RB036_048",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_048"
+          ]
+        },
+        {
+          "id": "MET-RB036-009",
+          "layer": "MET",
+          "titulo": "Como Construir Sequencia de Indoctrinacao Pre-Webinar",
+          "insight": "Metodologia: (1) Criar 3 videos - um para cada falsa crenca, (2) Cada video aumenta curiosidade sem responder a questao, (3) Enviar entre registro e data do evento, (4) Tratar como amplificador de show-up rate e conversao",
+          "chunk_ref": "RB036_049",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_049"
+          ]
+        },
+        {
+          "id": "MET-RB036-010",
+          "layer": "MET",
+          "titulo": "Como Lancar Presenca de Especialista do Zero",
+          "insight": "Sequencia de bootstrap: (1) Definir quem serve e qual nova oportunidade cria, (2) Obter resultados com grupo beta, (3) Dominar storytelling, (4) Construir primeiro webinar e iterar semanalmente, (5) Usar Dream 100 para crescimento, (6) Escalar com trafego pago apos validacao",
+          "chunk_ref": "RB036_050",
+          "source_id": "RB036",
+          "pessoa": "Russell Brunson",
+          "priority": "HIGH",
+          "confidence": 0.9,
+          "tags": [
+            "[MET]"
+          ],
+          "chunks": [
+            "RB036_050"
+          ]
+        }
+      ]
+    },
+    "themes": {},
+    "version": "v1",
+    "change_log": [
+      {
+        "timestamp": "2026-03-14T06:29:20.874287",
+        "source_id": "RB036",
+        "action": "extracted",
+        "count": 50
+      }
+    ]
+  }
+}
