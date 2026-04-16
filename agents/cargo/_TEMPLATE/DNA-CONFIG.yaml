@@ -1,0 +1,44 @@
+agent_id: "[slug-do-cargo]"
+agent_type: CARGO
+version: "1.0.0"
+created: "[DATA]"
+last_updated: "[DATA]"
+status: ONBOARDING  # ONBOARDING → ACTIVE → MATURE → ARCHIVED
+
+cargo:
+  titulo: "[Título completo do cargo]"
+  categoria: "[MARKETING/SALES/OPERATIONS/C-LEVEL/CONTENT]"
+  senioridade: "[JUNIOR/PLENO/SENIOR/LEAD]"
+  reporta_a: "[Cargo superior]"
+  gerencia: []  # lista de cargos subordinados
+
+skills_obrigatorias:
+  - "[Skill obrigatória 1]"
+  - "[Skill obrigatória 2]"
+
+skills_desejaveis:
+  - "[Skill desejável 1]"
+
+knowledge_sources:
+  minds:
+    - "[mind-id se relevante]"
+  skills:
+    - "[skill-id se relevante]"
+  external: []
+
+kpis:
+  - nome: "[KPI principal]"
+    target: "[valor]"
+    frequencia: "[diario/semanal/mensal]"
+
+onboarding:
+  criado_por: "processo /contratar"
+  data_contratacao: "[DATA]"
+  periodo_experiencia: "3 sessoes"
+  aprovado: false
+  testes_realizados: 0
+
+versao_historico:
+  - versao: "1.0.0"
+    data: "[DATA]"
+    mudanca: "Criação inicial via /contratar"

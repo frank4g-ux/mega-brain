@@ -28,7 +28,7 @@
 | `/n8n-setup` | `n8n-setup` ou "configurar automação" | Setup completo: VPS + n8n + Evolution API + workflow de prospecção automática | Ao contratar VPS — roda uma vez, funciona para sempre |
 | `/nurture` | `nurture` ou "sequência follow-up" | 5 mensagens WhatsApp para lead que não converteu na hora | Lead respondeu mas não fechou, follow-up pós-LP |
 | `/proposta` | `proposta` ou "gerar proposta" | Proposta comercial por nicho: 3 pacotes (R$1,5k/R$2,5k/R$4k) com DPL e ROI | Antes de reunião de fechamento, novo cliente |
-| `/onboarding-cliente` | `onboarding-cliente` ou "onboarding" | Protocolo de 5 dias: Handoff → Diagnóstico → Setup → Campanha → Alinhamento | Quando assinar novo cliente |
+| `/onboarding-cliente` | `onboarding-cliente` ou "onboarding" | Protocolo completo v2.0: Fechamento → Boas-vindas → Kickoff NEPQ → 4 Números → Entrega → Relatório → Upsell | Quando assinar novo cliente |
 | `/research-first` | `research-first` ou "pesquisar mercado" | Barredura de mercado em 5 etapas antes de qualquer execução | Antes de entrar em nicho novo, validar hipótese de campanha |
 | `/landing-page` | `landing-page` ou "criar LP" | LP de alta conversão — complementa o `/web-designer` | Criar LP para cliente (entrega do serviço) |
 | `/carrossel` | `carrossel` ou "criar carrossel" | Carrossel Instagram: gancho + slides + CTA | Post de autoridade, conteúdo orgânico semanal |

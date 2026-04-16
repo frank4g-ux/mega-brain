@@ -17,9 +17,10 @@ const getArg = (name) => {
 
 const tema    = getArg('--tema') || 'carrossel';
 const slidesJson = getArg('--slides');
-const imagemCapa = getArg('--imagem-capa') || null;
-const imagemDark = getArg('--imagem-dark') || null;
-const imagemCta  = getArg('--imagem-cta')  || null;
+const imagemCapa  = getArg('--imagem-capa')  || null;
+const imagemDark  = getArg('--imagem-dark')  || null;
+const imagemDark2 = getArg('--imagem-dark2') || null;
+const imagemCta   = getArg('--imagem-cta')   || null;
 const legenda    = getArg('--legenda') || null;
 
 if (!slidesJson) {
@@ -41,9 +42,10 @@ function imgToBase64(imgPath) {
   return `data:image/${ext};base64,${data}`;
 }
 
-const b64Capa = imgToBase64(imagemCapa);
-const b64Dark = imgToBase64(imagemDark);
-const b64Cta  = imgToBase64(imagemCta);
+const b64Capa  = imgToBase64(imagemCapa);
+const b64Dark  = imgToBase64(imagemDark);
+const b64Dark2 = imgToBase64(imagemDark2);
+const b64Cta   = imgToBase64(imagemCta);
 
 const BRAND = {
   teal:    '#65c2cd',
@@ -134,7 +136,7 @@ function slideCapa(d) {
   </style></head><body>
     <div class="c">
       <div class="tag">${BRAND.h1}</div>
-      <div class="hook">${d.hook}</div>
+      <div class="hook">${(d.hook||'').replace(/\\n|\n/g,'<br>')}</div>
       <div class="sub">${BRAND.h2}</div>
     </div>
     ${pills(true)}
@@ -142,13 +144,11 @@ function slideCapa(d) {
 }
 
 // Slides dark (2, 3, 4)
-function slideDark(d, showImg = false) {
-  if (showImg) {
+function slideDark(d, imgB64 = null) {
+  if (imgB64) {
     // Layout com imagem: imagem no topo, texto centralizado abaixo
-    const imgContent = b64Dark
-      ? `<img src="${b64Dark}" style="width:100%;height:100%;object-fit:cover;display:block;"/>`
-      : '';
-    const imgBg = b64Dark ? '' : 'background:#1a1a1a;';
+    const imgContent = `<img src="${imgB64}" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"/>`;
+    const imgBg = '';
     return `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
       ${base(BRAND.darkBg,'#fff')}
       .img-w{height:245px;overflow:hidden;flex-shrink:0;margin-top:10px;${imgBg}}
@@ -161,8 +161,8 @@ function slideDark(d, showImg = false) {
       ${header(true)}
       <div class="img-w">${imgContent}</div>
       <div class="c">
-        <div class="hl">${d.headline}</div>
-        <div class="bd">${d.body.replace(/\n/g,'<br>')}</div>
+        <div class="hl">${d.headline.replace(/\\n|\n/g,'<br>')}</div>
+        <div class="bd">${d.body.replace(/\\n|\n/g,'<br>')}</div>
       </div>
       ${pills(true)}
     </body></html>`;
@@ -178,8 +178,8 @@ function slideDark(d, showImg = false) {
     </style></head><body>
       ${header(true)}
       <div class="c">
-        <div class="hl">${d.headline}</div>
-        <div class="bd">${d.body.replace(/\n/g,'<br>')}</div>
+        <div class="hl">${d.headline.replace(/\\n|\n/g,'<br>')}</div>
+        <div class="bd">${d.body.replace(/\\n|\n/g,'<br>')}</div>
       </div>
       ${pills(true)}
     </body></html>`;
@@ -206,8 +206,8 @@ function slideLight(d, softCta = null, arrasta = true) {
   </style></head><body>
     ${header(false)}
     <div class="c">
-      <div class="hl">${d.headline}</div>
-      <div class="bd">${d.body.replace(/\n/g,'<br>')}</div>
+      <div class="hl">${d.headline.replace(/\\n|\n/g,'<br>')}</div>
+      <div class="bd">${d.body.replace(/\\n|\n/g,'<br>')}</div>
     </div>
     ${ctaBlock}
     ${pills(arrasta, false)}
@@ -234,8 +234,8 @@ function slideDado(d) {
     ${header(false)}
     <div class="c">
       <div class="num">${d.numero}</div>
-      <div class="hl">${d.headline}</div>
-      <div class="bd">${d.body.replace(/\n/g,'<br>')}</div>
+      <div class="hl">${d.headline.replace(/\\n|\n/g,'<br>')}</div>
+      <div class="bd">${d.body.replace(/\\n|\n/g,'<br>')}</div>
       ${d.fonte ? `<div class="fonte">Fonte: ${d.fonte}</div>` : ''}
     </div>
     ${pills(true, false)}
@@ -268,8 +268,8 @@ function slideCta(d) {
     .footer{position:absolute;bottom:0;left:0;right:0;z-index:2;}
   </style></head><body>
     <div class="c">
-      <div class="soft">${d.texto_suave}</div>
-      <div class="cta">${d.cta_bold}</div>
+      <div class="soft">${(d.texto_suave||'').replace(/\\n|\n/g,'<br>')}</div>
+      <div class="cta">${(d.cta_bold||'').replace(/\\n|\n/g,'<br>')}</div>
       <div class="handle-row">
         <span class="htag htag-t">${BRAND.h1}</span>
         <span class="htag htag-b">${BRAND.h2}</span>
@@ -286,9 +286,9 @@ function slideCta(d) {
 async function render() {
   const htmlSlides = [
     slideCapa(slides[0]),                              // 1 — Capa
-    slideDark(slides[1], true),                        // 2 — Problema (dark + imagem)
-    slideDark(slides[2], false),                       // 3 — Agravamento (dark)
-    slideDark(slides[3], false),                       // 4 — Virada (dark)
+    slideDark(slides[1], b64Dark),                     // 2 — Problema (dark + imagem)
+    slideDark(slides[2], b64Dark2),                    // 3 — Agravamento (dark + imagem2)
+    slideDark(slides[3]),                              // 4 — Virada (dark)
     slideDado(slides[4]),                              // 5 — Solução + Dado ⭐
     slideLight(slides[5], slides[5].soft_cta || null), // 6 — Síntese + Soft CTA
     slideCta(slides[6]),                               // 7 — CTA interativo
@@ -322,7 +322,7 @@ async function render() {
   // Salva Legenda.txt
   if (legenda) {
     const legendaPath = path.join(outputDir, 'Legenda.txt');
-    fs.writeFileSync(legendaPath, legenda, 'utf8');
+    fs.writeFileSync(legendaPath, legenda.replace(/\\n/g, '\n'), 'utf8');
     console.log(`📝 Legenda.txt salva em: ${legendaPath}`);
   }
 

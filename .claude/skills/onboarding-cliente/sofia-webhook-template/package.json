@@ -1,0 +1,7 @@
+{
+  "name": "sofia-webhook",
+  "version": "1.0.0",
+  "description": "Webhook GPTMaker → NossoCRM para pacote Máquina VaiAnuncio",
+  "private": true,
+  "engines": { "node": ">=18" }
+}

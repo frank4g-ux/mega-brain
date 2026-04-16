@@ -13,7 +13,7 @@ const { execSync, spawn } = require('child_process');
 const COMFY_URL   = 'http://127.0.0.1:8188';
 const COMFY_DIR   = 'C:\\Users\\FranSa\\Downloads\\comfyui\\ComfyUI_windows_portable';
 const OUTPUT_DIR  = path.join(COMFY_DIR, 'ComfyUI', 'output');
-const CHECKPOINT  = 'dreamshaper_8.safetensors';
+const CHECKPOINT  = 'ponyRealism_V23ULTRA.safetensors';
 
 // Parse args
 const args = process.argv.slice(2);
@@ -27,9 +27,11 @@ if (!promptsJson) { console.error('❌ --prompts é obrigatório'); process.exit
 
 const prompts = JSON.parse(promptsJson);
 
-const NEG = '(worst quality, low quality:1.4), (bad anatomy), text, watermark, logo, ' +
-            'signature, blurry, deformed, ugly, out of frame, cropped, extra limbs, ' +
-            'bad proportions, jpeg artifacts, nsfw';
+const NEG = 'score_1, score_2, score_3, score_4, (worst quality, low quality:1.4), ' +
+            'bad anatomy, deformed hands, extra fingers, fused fingers, missing fingers, ' +
+            'headless, cut off head, cropped face, out of frame face, ' +
+            'text, watermark, logo, signature, blurry, ugly, out of frame, ' +
+            'bad proportions, jpeg artifacts, nsfw, cartoon, anime, illustration';
 
 // ─── HTTP helpers ─────────────────────────────────────────────────────────────
 
@@ -131,10 +133,10 @@ function buildWorkflow(positivePrompt, prefix, width = 768, height = 960) {
         "negative": ["3", 0],
         "latent_image": ["4", 0],
         "seed": seed,
-        "steps": 20,
-        "cfg": 7,
-        "sampler_name": "dpmpp_2m_sde",
-        "scheduler": "karras",
+        "steps": 12,
+        "cfg": 5,
+        "sampler_name": "dpmpp_3m_sde",
+        "scheduler": "exponential",
         "denoise": 1.0
       }
     },
@@ -188,13 +190,15 @@ async function main() {
   await startComfyUI();
 
   // Prompts enriquecidos com estilo editorial
+  const q = 'score_9, score_8_up, score_7_up, masterpiece, best quality, ultra realistic, photorealistic, RAW photo';
+  const face = 'face clearly visible, head and shoulders, upper body portrait, looking at camera, full face in frame';
   const estilo = {
-    capa: `${prompts.capa}, editorial photography, cinematic lighting, moody atmosphere, ` +
-          `shallow depth of field, professional portrait, high contrast, film grain, 4:5 ratio`,
-    dark: `${prompts.dark}, cinematic still photography, dark moody atmosphere, ` +
-          `low key lighting, chiaroscuro, professional, high contrast, editorial style`,
-    cta:  `${prompts.cta}, dramatic editorial photography, strong rim light, dark background, ` +
-          `person with determined expression, high contrast, cinematic, impactful composition`
+    capa: `${q}, ${face}, ${prompts.capa}, cinematic photography, dramatic lighting, shallow depth of field, ` +
+          `professional portrait, high contrast, sharp focus`,
+    dark: `${q}, ${face}, ${prompts.dark}, dark moody atmosphere, low key lighting, chiaroscuro, ` +
+          `cinematic still, high contrast, professional photography`,
+    cta:  `${q}, ${face}, ${prompts.cta}, strong rim light, dark studio background, ` +
+          `determined expression, high contrast, cinematic portrait, sharp focus`
   };
 
   const capa = await gerarImagem(estilo.capa, 'capa');

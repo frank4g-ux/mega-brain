@@ -46,9 +46,8 @@ agents/minds/**
 !agents/minds/_example/
 !agents/minds/_example/**
 
-# === CARGO AGENTS (Pipeline output, per-user) ===
-agents/cargo/**
-!agents/cargo/.gitkeep
+# === CARGO AGENTS (Tracked — VaiAnuncio agents) ===
+# agents/cargo/** removido do ignore para sincronizar Rodrigo, Kauan e demais agentes
 
 # === COMPANY DATA (Pipeline output, per-user) ===
 agents/sua-empresa/**
