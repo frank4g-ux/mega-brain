@@ -101,7 +101,9 @@ Só avança para reunião o lead que passa nos 4:
 ```
 [ ] Proposta formal enviada (via /proposta)
 [ ] Contrato digital assinado (PandaDoc, Google Docs ou similar)
-[ ] Pagamento do setup confirmado (PIX ou link de pagamento)
+[ ] Pagamento do setup confirmado
+    → PIX preferencial: CNPJ 62.642.010/0001-88 (C6 Bank)
+    → Cartão: gerar link via Asaas (taxa repassada ao cliente)
 [ ] IMPORTANTE: só inicia setup após pagamento. Sem exceção.
 [ ] Kickoff agendado (dentro de 48h após pagamento)
 ```
@@ -241,7 +243,9 @@ ESTRUTURA:
 REGRAS:
   Domínio     = sempre do cliente (registrar em registro.br no CPF/CNPJ do cliente)
   Hospedagem  = conta da agência (aponta DNS do domínio do cliente pro servidor Hostinger)
-  Cobrança    = R$ 80–120/mês de "hospedagem + manutenção" incluído no pacote ou separado
+  Cobrança    = INCLUSA no pacote — sem custo adicional para o cliente
+                → Posicionar como benefício: "hospedagem grátis enquanto for cliente"
+                → Custo real < R$1/cliente (plano Business cobre até 50 sites)
 
 COMO CONFIGURAR:
   1. Cliente registra domínio em registro.br (CPF/CNPJ dele)
@@ -843,11 +847,11 @@ SE você tiver 3+ clientes simultâneos
 ## PENDÊNCIAS — O QUE FALTA CONSTRUIR ANTES DO PRÓXIMO CLIENTE
 
 ```
-[ ] 1. CONTRATO FORMAL (Growth e Máquina)
-       → Aguardando abertura do Inter PJ para incluir PIX PJ no contrato
-       → Precisa cobrir: prazo mínimo 3 meses, cláusula de rescisão,
-         entrega de arquivos em 5 dias úteis, domínio em nome do cliente
-       → Criar via PandaDoc ou Google Docs assinável
+✅ 1. CONTRATOS FORMAIS — CONCLUÍDOS (2026-04-17)
+       → Starter, Growth e Máquina gerados em C:\tmp\vaianuncio-estrutura\
+       → Cobrem: prazo mínimo, PIX CNPJ C6 Bank + Asaas (cartão), cláusula
+         de domínio em nome do cliente, entrega de arquivos em 5 dias úteis,
+         hospedagem inclusa, multa por rescisão antecipada
 
 [ ] 2. VERCEL FUNCTION — INTEGRAÇÃO SOFIA → CRM (template pronto, deploy pendente por cliente)
        ✅ Template criado: onboarding-cliente/sofia-webhook-template/
@@ -884,7 +888,7 @@ SE você tiver 3+ clientes simultâneos
 
 - **Versão:** 4.0.0
 - **Criado:** 2026-03-20
-- **Atualizado:** 2026-04-13
+- **Atualizado:** 2026-04-17
 - **Validado por:** Conselho completo (Hormozi · Brunson · Justin Brooke · Jeremy Haynes · Cole Gordon · Jeremy Miner) + Conclave
 - **Nicho principal:** Clínica Odontológica / Estética
 - **Dependências:** agents/cargo/GESTOR-TRAFEGO-META/ · agents/cargo/GESTOR-TRAFEGO-GOOGLE/ · agents/cargo/SDR/
