@@ -56,7 +56,7 @@ A proposta é entregue como documento formatado (pode ser colado no WhatsApp, en
 ```
 ════════════════════════════════════════════
 PROPOSTA VAIANUNCIO × [NOME DO NEGÓCIO]
-Preparada por: Fran · VaiAnuncio
+Preparada por: Frank · VaiAnuncioAí
 Data: [DATA]
 ════════════════════════════════════════════
 
@@ -236,17 +236,45 @@ Somos pagos para gerar resultado — não para ter reunião.
 
 1. Confirmar o pacote escolhido
 2. Assinatura do contrato (enviado em até 24h)
-3. Onboarding em até 48h:
+3. Pagamento do setup (se aplicável) para liberar o onboarding
+4. Onboarding em até 48h após contrato assinado:
    - Acesso à conta de ads (Google + Meta)
    - Instalação do Pixel + GTM (se ainda não tiver)
-   - Configuração do agente de IA no WhatsApp
-4. Primeira campanha no ar em até 5 dias úteis
+   - Configuração do agente de IA no WhatsApp (Máquina)
+
+────────────────────────────────────────
+TIMELINE POR PACOTE
+────────────────────────────────────────
+
+STARTER
+→ Dia 1-2: Setup LP + Pixel + GTM
+→ Dia 3-4: Campanha configurada e revisada
+→ Dia 5:   Campanha no ar
+→ Dia 7-14: Primeiros leads chegando
+
+GROWTH
+→ Dia 1-2: Setup LP + Pixel + GTM + CRM
+→ Dia 3-4: Google Ads + Meta Ads configurados
+→ Dia 5:   Campanhas no ar
+→ Dia 5-7: Treinamento CRM (1h)
+→ Dia 7-14: Primeiros leads no CRM
+
+MÁQUINA DE CLIENTES
+→ Dia 1-2: Setup LP + Pixel + GTM + CRM
+→ Dia 3-4: Google Ads + Meta Ads configurados
+→ Dia 3-4: Agente de IA configurado e integrado ao CRM
+→ Dia 5:   Tudo no ar — leads entram, IA atende, CRM registra
+→ Dia 7-14: Primeiros leads qualificados automaticamente
+
+⚡ Benchmark: clientes com setup completo geram os primeiros
+leads entre o 7º e o 14º dia. Otimizações acontecem nas
+semanas 2 e 3 com base nos dados reais.
 
 Para confirmar ou tirar dúvidas:
-📱 WhatsApp: [número do Fran]
+📱 WhatsApp: (11) 96014-5026 (agência) / (11) 99897-6931 (Frank)
 🌐 vaianuncioai.com
 
-Fran · VaiAnuncio
+Frank · VaiAnuncioAí
 ```
 
 ---
@@ -271,6 +299,24 @@ Fran · VaiAnuncio
 4. **Garantia sempre presente** — reduz risco percebido e aumenta conversão
 5. **Nunca prometer resultado exato** — usar "estimativa baseada em benchmarks"
 6. **Kauan e Rodrigo revisam os benchmarks de tráfego** antes de enviar proposta com números
+
+---
+
+## TEMPLATES DE E-MAIL
+
+Quando o prospect pedir para receber a proposta por e-mail, usar os templates:
+
+| Template | Arquivo | Quando |
+|----------|---------|--------|
+| Proposta por e-mail | `EMAIL-PROPOSTA.md` | Prospect pediu proposta por e-mail |
+| Follow-up de proposta | `EMAIL-FOLLOWUP.md` | 3–4 dias sem resposta após envio |
+| 2º Follow-up / encerramento | `EMAIL-FOLLOWUP.md` (seção 2) | 7 dias sem resposta após follow-up 1 |
+
+**Diferença do formato e-mail vs WhatsApp/documento:**
+- E-mail: apresenta **1 pacote recomendado** (Growth) para evitar paralisia de escolha
+- WhatsApp/documento presencial: apresenta os 3 pacotes (prospect já está engajado na conversa)
+
+Os rascunhos ficam salvos no Gmail (bmdaagenciaforms@gmail.com) com assunto iniciando em "📋 TEMPLATE" para fácil localização.
 
 ---
 

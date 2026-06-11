@@ -1,12 +1,31 @@
 # MEMORY — Rodrigo | Gestor de Tráfego Google Ads
 
-> **Última atualização:** 2026-04-15
-> **Versão do agente:** 1.3.0
-> **Entradas:** 16
+> **Última atualização:** 2026-06-10
+> **Versão do agente:** 1.3.1
+> **Entradas:** 18
 
 ---
 
 ## DECISÕES REGISTRADAS
+
+### 2026-06-10 - Caso Eliane — Tracking Resolvido + Lição de Campo: GTM e Botão Tel
+**Contexto:** Eliane continuou cliente após campanhas entregarem resultado. Problema persistente: tracking quebrado — ligações aconteciam mas nenhuma era registrada no Google Ads. Sessão de trabalho técnico completo.
+**O que foi feito:**
+1. GTM estava em modo Visualização (não publicado) desde o início — conversões nunca foram ao vivo. Publicado nas versões 12, 13 e 14.
+2. GA4 (G-5W37RLJDPE) não estava instalado — adicionado e publicado.
+3. Tag "ligação botão flutuante" confirmada funcionando: disparou 2x no preview. Botão é `<a href="tel:+5511962632272">` — trigger "Apenas links" captura corretamente.
+4. Versão 14 publicada em 10/06/2026 — GTM-52BMBCLB ao vivo com 5 tags, 2 gatilhos.
+**Status das campanhas:**
+- Search [PESQ][24-03][4CIDADES]: R$20,30/dia, 938 impressões, 45 cliques, CTR 4,8% — Ativa
+- Smart Campaign: R$10/dia, 4 conversões históricas — Ativa
+- Decisão: manter ambas rodando em paralelo até ter dados de conversão reais para comparar
+**Lição de campo registrada:**
+- GTM não publicado = tags não existem para o Google. Sempre verificar em "Versões" se há uma versão ativa publicada (não apenas salva no workspace).
+- Botão flutuante com `href="tel:..."` é capturado pelo trigger "Apenas links" — não precisa de CSS selector customizado.
+- GA4 leva 24-48h para aparecer com dados após instalação — não confundir ausência de dados com erro de configuração.
+**Próximo passo:** Verificar conversões no Google Ads e dados no GA4 em 1-2 dias. Com dados suficientes, comparar Search vs Smart e decidir qual pausar.
+
+---
 
 ### 2026-03-20 - Contratação via /contratar
 **Contexto:** Landing page da VaiAnuncio publicada com GTM (GTM-T29WB9RX) e GA4 disponível para configuração.
@@ -459,7 +478,7 @@ plano de saúde, SUS, INSS, convênio, concurso, faculdade de medicina, estágio
 
 | Cliente | Nicho | Status | Budget/dia | CPA atual | Meta |
 |---------|-------|--------|-----------|-----------|------|
-| Eliane | Desentupidora | ⚠️ Recuperação — decisão pendente | R$15 (abaixo do mínimo) | R$0 (0 conversões) | R$35 |
+| Eliane | Desentupidora | ✅ Tracking resolvido — aguardando dados | R$20,30 (Search) + R$10 (Smart) | Pendente (tracking quebrado até 10/06) | R$35 |
 
 ---
 
@@ -467,7 +486,8 @@ plano de saúde, SUS, INSS, convênio, concurso, faculdade de medicina, estágio
 
 | Campanha | Cliente | Tipo | Status | Observação |
 |----------|---------|------|--------|-----------|
-| [PESQ][24-03][4CIDADES] | Eliane | Search | Ativa - Limitada pelo orçamento | 0 conversões em 25 dias — recuperação em andamento |
+| [PESQ][24-03][4CIDADES] | Eliane | Search | Ativa — R$20,30/dia | 938 impressões, 45 cliques, CTR 4,8% — aguardando conversões pós-tracking |
+| Smart Campaign | Eliane | Smart | Ativa — R$10/dia | 4 conversões históricas — referência para comparação |
 
 ---
 

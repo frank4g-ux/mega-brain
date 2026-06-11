@@ -33,8 +33,9 @@ const GRAPH = 'https://graph.facebook.com/v25.0';
 const args    = process.argv.slice(2);
 const getArg  = n => { const i = args.indexOf(n); return i !== -1 ? args[i+1] : null; };
 
-const pasta     = getArg('--pasta');
-const agendar   = getArg('--agendar'); // ISO string ex: "2026-03-20T18:00:00"
+const pasta      = getArg('--pasta');
+const agendar    = getArg('--agendar');    // ISO string ex: "2026-03-20T18:00:00"
+const tunnelUrl  = getArg('--tunnel-url'); // URL externa já ativa (bypass localtunnel)
 
 if (!pasta) { console.error('❌ --pasta é obrigatório'); process.exit(1); }
 if (!fs.existsSync(pasta)) { console.error(`❌ Pasta não encontrada: ${pasta}`); process.exit(1); }
@@ -133,17 +134,23 @@ async function main() {
   // 3. Sobe servidor local + tunnel
   const PORT = 19876;
   const server = await startServer(pasta, PORT);
-  let tunnel;
-  try {
-    tunnel = await startTunnel(PORT);
-  } catch (e) {
-    server.close();
-    console.error('❌ Tunnel falhou:', e.message);
-    console.error('💡 Tenta instalar ngrok e usar --tunnel-url manualmente');
-    process.exit(1);
-  }
+  let tunnel = null;
+  let baseUrl;
 
-  const baseUrl = tunnel.url;
+  if (tunnelUrl) {
+    console.log(`🔗 Usando tunnel externo: ${tunnelUrl}`);
+    baseUrl = tunnelUrl;
+  } else {
+    try {
+      tunnel = await startTunnel(PORT);
+    } catch (e) {
+      server.close();
+      console.error('❌ Tunnel falhou:', e.message);
+      console.error('💡 Tenta: node publicar.js --pasta "..." --tunnel-url "https://xxx.lhr.life"');
+      process.exit(1);
+    }
+    baseUrl = tunnel.url;
+  }
 
   try {
     // 4. Cria containers para cada slide
@@ -217,7 +224,7 @@ async function main() {
     }
 
   } finally {
-    tunnel.close();
+    if (tunnel) tunnel.close();
     server.close();
   }
 }

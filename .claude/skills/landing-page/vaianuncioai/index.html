@@ -116,11 +116,11 @@
       .hero-btns a  { width:100% !important; justify-content:center !important; font-size:16px !important; padding:16px 24px !important; }
 
       /* STATS */
-      .stats-bar       { display:grid !important; grid-template-columns:1fr 1fr !important; width:100% !important; }
-      .stats-bar > div { border-right:none !important; border-bottom:1px solid var(--border); padding:16px !important; }
+      .stats-bar       { grid-template-columns:1fr 1fr !important; max-width:100% !important; }
+      .stats-bar > div { border-right:none !important; border-bottom:1px solid var(--border) !important; padding:16px !important; }
       .stats-bar > div:nth-child(odd)  { border-right:1px solid var(--border) !important; }
-      .stats-bar > div:last-child      { border-bottom:none !important; }
       .stats-bar > div:nth-child(3)    { border-bottom:none !important; }
+      .stats-bar > div:nth-child(4)    { border-bottom:none !important; }
 
       /* SECTIONS */
       .sec-pad  { padding:56px 16px !important; }
@@ -170,6 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="nav-links" style="display:flex;align-items:center;gap:24px">
       <a href="#como-funciona" style="color:#6b7280;font-size:14px;font-weight:500;text-decoration:none">Como funciona</a>
       <a href="#cases"         style="color:#6b7280;font-size:14px;font-weight:500;text-decoration:none">Cases</a>
+      <a href="#planos"        style="color:#6b7280;font-size:14px;font-weight:500;text-decoration:none">Planos</a>
     </div>
     <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
        onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
@@ -185,7 +186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="max-width:880px;margin:0 auto">
     <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);border-radius:50px;padding:8px 22px;margin-bottom:30px">
       <span style="width:8px;height:8px;background:var(--teal);border-radius:50%;display:inline-block;animation:pulse-btn 1.5s infinite"></span>
-      <span style="color:var(--teal);font-size:13px;font-weight:600">IA de Atendimento · Tráfego Pago · 24h no ar</span>
+      <span style="color:var(--teal);font-size:13px;font-weight:600">IA de Atendimento · Tráfego Pago · CRM · 24h no ar</span>
     </div>
 
     <h1 style="font-size:clamp(2.6rem,6.5vw,4.4rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px">
@@ -214,24 +215,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Stats -->
-    <div class="glass stats-bar" style="display:inline-flex;flex-wrap:wrap;border-radius:20px;overflow:hidden">
-      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
-        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">+5k</div>
-        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">leads/mês</div>
+    <div class="glass stats-bar" style="display:grid;grid-template-columns:repeat(4,1fr);border-radius:20px;overflow:hidden;width:100%;max-width:780px;margin:0 auto">
+      <div style="padding:20px 24px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:var(--teal)">59%</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">leads perdidos fora do horário¹</div>
       </div>
-      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
-        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">7s</div>
+      <div style="padding:20px 24px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:var(--teal)">7s</div>
         <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">resposta da IA</div>
       </div>
-      <div style="padding:20px 32px;text-align:center;border-right:1px solid var(--border)">
-        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">24/7</div>
-        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">atendimento</div>
+      <div style="padding:20px 24px;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:var(--teal)">24/7</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">atendimento automatizado</div>
       </div>
-      <div style="padding:20px 32px;text-align:center">
-        <div style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--teal)">+78%</div>
-        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">mais conversão</div>
+      <div style="padding:20px 24px;text-align:center">
+        <div style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:var(--teal)">10x</div>
+        <div style="font-size:11px;color:#4a5568;font-weight:500;margin-top:3px">queda sem resposta em 5min²</div>
       </div>
     </div>
+    <p style="text-align:center;color:#2a3a4a;font-size:11px;margin-top:16px">¹ Harvard Business Review · ² MIT Lead Response Management Study</p>
   </div>
 </section>
 
@@ -320,6 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="text-align:center;margin-bottom:52px">
       <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">Resultados reais</span>
       <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-top:12px">Antes e depois da implementação</h2>
+      <p style="color:#4a5568;font-size:12px;margin-top:10px">Casos representativos baseados em situações reais do segmento. Resultados individuais podem variar.</p>
     </div>
 
     <!-- Case 1 -->
@@ -358,31 +361,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Case 2 -->
     <div class="glass card-hover" style="border-radius:22px;padding:34px;margin-bottom:22px">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
-        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#b45309);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🔧</div>
-        <div><div style="font-weight:900;font-size:1.05rem">Roberto Mendes</div><div style="color:#f59e0b;font-size:13px;font-weight:600">Elétrica e Manutenção · ABC Paulista</div></div>
-        <div style="margin-left:auto;background:rgba(40,200,64,0.1);border:1px solid rgba(40,200,64,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#28c840">✓ Ativo há 3 meses</div>
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🦷</div>
+        <div><div style="font-weight:900;font-size:1.05rem">Dr. Felipe Costa</div><div style="color:#3b82f6;font-size:13px;font-weight:600">Implantodontia & Prótese · São Paulo</div></div>
+        <div class="case-badge" style="margin-left:auto;background:rgba(40,200,64,0.1);border:1px solid rgba(40,200,64,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#28c840">✓ Ativo há 3 meses</div>
       </div>
       <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
         <div class="card-before">
           <div style="color:#ef4444;font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">⬛ Antes</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
-            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Perdia chamado por estar em serviço</li>
-            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>CPL de R$67 sem retorno claro</li>
-            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Sem controle de orçamentos pendentes</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Investia R$3.200/mês em Google Ads sem rastreamento</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>Leads chegavam mas não eram respondidos a tempo</li>
+            <li style="font-size:14px;color:#9ca3af;display:flex;gap:8px"><span style="color:#ef4444;flex-shrink:0">✕</span>CPL de R$210 — sem saber quantos viraram pacientes</li>
           </ul>
         </div>
         <div class="card-after">
           <div style="color:var(--teal);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">✦ Depois — 90 dias</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
-            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>IA qualifica e organiza os chamados</li>
-            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>CPL caiu de R$67 para R$18</li>
-            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>3x mais orçamentos fechados</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>CPL caiu de R$210 para R$74</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>IA agenda avaliações gratuitas 24h</li>
+            <li style="font-size:14px;color:#d1d5db;display:flex;gap:8px"><span style="color:var(--teal);flex-shrink:0">✓</span>+R$14.800/mês em implantes fechados</li>
           </ul>
         </div>
       </div>
       <div style="margin-top:18px;padding:14px 18px;background:rgba(101,194,205,0.05);border-radius:10px;border-left:3px solid var(--teal)">
-        <p style="font-size:14px;color:#a0aab4;font-style:italic">"Antes perdia serviço porque estava num serviço. Agora o WhatsApp responde sozinho e os pedidos chegam organizados."</p>
-        <p style="font-size:12px;color:var(--teal);font-weight:700;margin-top:8px">— Roberto Mendes</p>
+        <p style="font-size:14px;color:#a0aab4;font-style:italic">"Eu jogava dinheiro fora sem saber. Agora sei exatamente de onde vem cada paciente — e a agenda de avaliações tá sempre cheia."</p>
+        <p style="font-size:12px;color:var(--teal);font-weight:700;margin-top:8px">— Dr. Felipe Costa</p>
       </div>
     </div>
 
@@ -412,63 +415,143 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Case 4 — SDR IA: Loja de Botas -->
+    <!-- Case 4 — Sofia IA: Clínica Odonto Especializada -->
     <div class="glass card-hover" style="border-radius:22px;padding:34px;margin-top:22px">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap">
-        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#4f46e5);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">👢</div>
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#65c2cd,#2d8a96);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🤖</div>
         <div>
-          <div style="font-weight:900;font-size:1.05rem">BotsOn — Loja de Botas</div>
-          <div style="color:#8b5cf6;font-size:13px;font-weight:600">E-commerce · SDR com IA · Qualificação de leads</div>
+          <div style="font-weight:900;font-size:1.05rem">Clínica OdontoVita — Sofia IA</div>
+          <div style="color:var(--teal);font-size:13px;font-weight:600">Ortodontia & Implantes · IA de Atendimento 24h</div>
         </div>
-        <div style="margin-left:auto;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:#8b5cf6">IA qualifica — humano fecha</div>
+        <div style="margin-left:auto;background:rgba(101,194,205,0.1);border:1px solid rgba(101,194,205,0.3);border-radius:50px;padding:5px 16px;font-size:12px;font-weight:700;color:var(--teal)">Sofia agenda — dentista trata</div>
       </div>
 
       <div class="terminal">
         <div class="terminal-bar">
           <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-          <span style="color:#4a5568;font-size:12px;margin-left:8px">sdr-ia · BotsOn · qualificação de lead</span>
+          <span style="color:#4a5568;font-size:12px;margin-left:8px">sofia · OdontoVita · WhatsApp · 23:14</span>
         </div>
         <div class="terminal-body">
-          <div><span class="t-prompt">Matheus  </span>Oi, vi o anúncio de vocês, quero uma bota</div>
-          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Oi Matheus! Boa escolha 😄 Vai usar pra</span></div>
-          <div><span style="color:transparent">SDR IA   </span><span class="t-ia">trabalho, trilha ou uso casual?</span></div>
+          <div><span class="t-prompt">Juliana  </span>Oi, vi o anúncio do implante. Tem avaliação gratuita?</div>
+          <div><span class="t-ia">Sofia    </span><span class="t-ia">Oi Juliana! Sim, nossa avaliação é gratuita 😊</span></div>
+          <div><span style="color:transparent">Sofia    </span><span class="t-ia">É para implante mesmo ou também quer checar</span></div>
+          <div><span style="color:transparent">Sofia    </span><span class="t-ia">outros tratamentos?</span></div>
           <br>
-          <div><span class="t-prompt">Matheus  </span>Casual, pra usar no dia a dia</div>
-          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Show! Prefere cano curto, médio ou longo?</span></div>
+          <div><span class="t-prompt">Juliana  </span>Só implante. Perdi um dente faz 2 anos</div>
+          <div><span class="t-ia">Sofia    </span><span class="t-ia">Entendo! Dois anos sem o dente pode afetar</span></div>
+          <div><span style="color:transparent">Sofia    </span><span class="t-ia">o osso, mas temos solução 👊 Qual região</span></div>
+          <div><span style="color:transparent">Sofia    </span><span class="t-ia">da cidade você está?</span></div>
           <br>
-          <div><span class="t-prompt">Matheus  </span>Cano médio, estilo mais despojado</div>
-          <div><span class="t-ia">SDR IA   </span><span class="t-ia">Ótimo. Qual o seu número?</span></div>
+          <div><span class="t-prompt">Juliana  </span>Pinheiros</div>
+          <div><span class="t-ia">Sofia    </span><span class="t-ia">Perfeito, nossa clínica fica a 10min 📍</span></div>
+          <div><span style="color:transparent">Sofia    </span><span class="t-ia">Prefere manhã ou tarde para a avaliação?</span></div>
           <br>
-          <div><span class="t-prompt">Matheus  </span>42</div>
-          <div><span class="t-ia">SDR IA   </span><span class="t-ia">E qual sua faixa de investimento?</span></div>
-          <div><span style="color:transparent">SDR IA   </span><span class="t-ia">Até R$300, de R$300–600 ou acima disso?</span></div>
+          <div><span class="t-prompt">Juliana  </span>Tarde, de preferência quinta</div>
           <br>
-          <div><span class="t-prompt">Matheus  </span>Até R$300</div>
+          <div><span class="t-ok">Sofia ✓  </span><span class="t-ok">Agendado! Quinta às 15h com Dr. Marcos.</span></div>
+          <div><span style="color:transparent">Sofia ✓  </span><span class="t-ok">Confirmação enviada por aqui 🗓️</span></div>
           <br>
-          <div><span class="t-ok">SDR IA ✓ </span><span class="t-ok">Matheus, agora que sei o que você quer</span></div>
-          <div><span style="color:transparent">SDR IA ✓ </span><span class="t-ok">vou te passar pro Ronaldo, nosso vendedor</span></div>
-          <div><span style="color:transparent">SDR IA ✓ </span><span class="t-ok">disponível agora. Um segundo! 👊</span></div>
-          <br>
-          <div><span class="t-dim">// lead qualificado em: </span><span class="t-ia">4 perguntas · 2min</span></div>
-          <div><span class="t-dim">// handoff p/ humano: </span><span class="t-ia">Ronaldo · online ✓</span></div>
+          <div><span class="t-dim">// horário do contato: </span><span class="t-ia">23:14 · fora do expediente</span></div>
+          <div><span class="t-dim">// tempo até agendamento: </span><span class="t-ia">3 min · 0 humanos envolvidos</span></div>
           <div><span class="cursor"></span></div>
         </div>
       </div>
 
       <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center">
-        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
-          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">4x</div>
-          <div style="font-size:12px;color:#6b7280;margin-top:4px">mais leads qualificados</div>
+        <div style="background:rgba(101,194,205,0.05);border:1px solid rgba(101,194,205,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--teal)">3min</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">do anúncio ao agendamento</div>
         </div>
-        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
-          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">2min</div>
-          <div style="font-size:12px;color:#6b7280;margin-top:4px">qualificação média</div>
+        <div style="background:rgba(101,194,205,0.05);border:1px solid rgba(101,194,205,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--teal)">24h</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">sem depender da recepção</div>
         </div>
-        <div style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px">
-          <div style="font-size:1.6rem;font-weight:900;color:#8b5cf6">+62%</div>
-          <div style="font-size:12px;color:#6b7280;margin-top:4px">taxa de fechamento</div>
+        <div style="background:rgba(101,194,205,0.05);border:1px solid rgba(101,194,205,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--teal)">+40%</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">de comparecimento nas avaliações</div>
         </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ PLANOS ════════════════ -->
+<section id="planos" class="sec-pad" style="padding:80px 24px;background:var(--card);border-top:1px solid var(--border);position:relative;z-index:1">
+  <div style="max-width:1060px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:16px">
+      <span style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase">Planos</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-top:12px">Qual faz mais sentido para você?</h2>
+      <p style="color:#6b7280;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto">No diagnóstico gratuito identificamos qual plano encaixa melhor no seu negócio e objetivo.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px">
+
+      <!-- STARTER -->
+      <div class="glass card-hover" style="border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#6b7280;margin-bottom:10px">STARTER</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#fff">Tráfego Inteligente</div>
+          <div style="font-size:13px;color:#6b7280;margin-top:6px">Para quem quer gerar leads e testar antes de escalar.</div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px;flex:1">
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>1 canal de tráfego pago (Google <em>ou</em> Meta)</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Landing page de alta conversão</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Pixel + rastreamento configurados</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Relatório mensal com KPIs</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Suporte via WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
+           onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+           style="display:block;text-align:center;padding:14px 24px;border-radius:50px;border:1px solid rgba(101,194,205,0.3);color:var(--teal);font-weight:700;font-size:14px;text-decoration:none;background:rgba(101,194,205,0.05)">
+          Quero começar →
+        </a>
+      </div>
+
+      <!-- GROWTH -->
+      <div class="glass card-hover" style="border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#6b7280;margin-bottom:10px">GROWTH</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#fff">Tráfego + CRM</div>
+          <div style="font-size:13px;color:#6b7280;margin-top:6px">Para quem não quer mais perder lead no caminho.</div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px;flex:1">
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>2 canais de tráfego (Google <em>+</em> Meta)</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Landing page de alta conversão</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>CRM configurado pro seu negócio</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Treinamento no CRM (1h)</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Relatório mensal + reunião de alinhamento</li>
+        </ul>
+        <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
+           onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+           style="display:block;text-align:center;padding:14px 24px;border-radius:50px;border:1px solid rgba(101,194,205,0.3);color:var(--teal);font-weight:700;font-size:14px;text-decoration:none;background:rgba(101,194,205,0.05)">
+          Quero escalar →
+        </a>
+      </div>
+
+      <!-- MÁQUINA — DESTAQUE -->
+      <div style="border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:20px;background:linear-gradient(135deg,rgba(101,194,205,0.12),rgba(45,138,150,0.08));border:1px solid rgba(101,194,205,0.35);position:relative;overflow:hidden">
+        <div style="position:absolute;top:18px;right:18px;background:var(--teal);color:#000;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px">Mais popular</div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px">MÁQUINA</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#fff">Máquina de Clientes</div>
+          <div style="font-size:13px;color:#6b7280;margin-top:6px">Para quem quer crescer sem contratar mais gente.</div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px;flex:1">
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Tudo do Growth</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span><strong style="color:#fff">IA de atendimento 24h no WhatsApp</strong></li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Responde, qualifica e agenda automaticamente</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Lead entra direto no CRM via IA</li>
+          <li style="font-size:14px;color:#d1d5db;display:flex;gap:10px"><span style="color:var(--teal);flex-shrink:0">✓</span>Reunião quinzenal de performance</li>
+        </ul>
+        <a href="https://wa.me/5511960145026?text=Olá!%20Quero%20um%20diagnóstico%20gratuito."
+           onclick="fbq('track','Lead');gtag('event','conversion',{'send_to':'AW-17806819995/cZ9VCOb9kI0cEJuF-qpC'})"
+           class="btn-glow teal-gradient"
+           style="display:block;text-align:center;padding:14px 24px;border-radius:50px;color:#000;font-weight:800;font-size:14px;text-decoration:none">
+          Quero automatizar →
+        </a>
+      </div>
+
     </div>
 
   </div>

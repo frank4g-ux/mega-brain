@@ -500,9 +500,9 @@ TODO DIA (5 min):
 [ ] CPL subindo > 20% em relação à média? → investigar antes de escalar
 
 TODA TERÇA-FEIRA (15 min) — RELATÓRIO SEMANAL WHATSAPP:
-[ ] Enviar mensagem de relatório rápido para o cliente:
-    "Semana [N]: [X] leads | CPL médio: R$[XX] | [destaque da semana]"
-    Exemplo: "Semana 2: 14 leads | CPL médio R$42 | melhor criativo: vídeo depoimento"
+[ ] Enviar mensagem de relatório usando o template:
+    → onboarding-cliente/relatorio-semanal-whatsapp.md
+    (versão Starter / Growth / Máquina — preencher com dados reais dos painéis)
 → Terça foi escolhida: segunda tem menos atenção (início de semana),
   quarta em diante perde o contexto da semana anterior.
 → Nunca pule — cliente sem informação cria ansiedade e cancela.
