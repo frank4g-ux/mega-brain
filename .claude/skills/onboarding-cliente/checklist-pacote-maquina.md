@@ -1,18 +1,41 @@
 # Checklist — Pacote Máquina (R$3.500/mês)
 ## Setup Completo em 4 Dias + Go Live no Dia 5
 
-> **Premissa:** tudo é feito por Fran. Cada bloco tem duração estimada.
+> **Premissa:** Fran faz as partes comerciais e de relacionamento. Spike (Claude) executa todo o técnico via API/GitHub.
 > Não pular etapa — a sequência evita retrabalho.
-> Pré-requisito: Kickoff realizado, 4 Números coletados, acesso às contas aprovado.
+> Pré-requisito: Kickoff realizado, 4 Números coletados.
+
+---
+
+## MODELO DE INFRAESTRUTURA (definido 2026-06-22)
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  INFRAESTRUTURA: conta VaiAnuncio (Vercel + Supabase de Frank)      │
+│  NossoCRM: 1 instância por cliente, hospedada na conta de Frank     │
+│  Supabase: 1 projeto por cliente (conta de Frank)                   │
+│  Vercel: 1 projeto por cliente (conta de Frank)                     │
+│                                                                     │
+│  QUEM FAZ O QUÊ:                                                    │
+│  Fran  → kickoff, relacionamento, relatórios, reuniões              │
+│  Spike → deploy CRM, Sofia, webhooks, tracking, tudo técnico        │
+│  Cliente → APENAS conectar WhatsApp (escanear QR Code)             │
+│                                                                     │
+│  TOKENS NECESSÁRIOS (Frank fornece uma vez):                        │
+│  [ ] Vercel API Token  → vercel.com/account/tokens                  │
+│  [ ] Supabase Management API → supabase.com/dashboard/account/tokens│
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## ✅ PRÉ-SETUP (antes do Dia 1 — no kickoff ou logo após)
 
 ```
-[ ] Dados coletados no kickoff:
+[ ] FRAN — Dados coletados no kickoff:
     [ ] Nome da clínica + nome do responsável
     [ ] WhatsApp Business da clínica (número que vai conectar a Sofia)
+         ⚠️ Precisa ser WhatsApp Business (não pessoal)
     [ ] Procedimento(s) principal(is) a anunciar
     [ ] Ticket médio + taxa de fechamento estimada
     [ ] Budget mensal aprovado (ads + gestão)
@@ -20,13 +43,22 @@
     [ ] Endereço completo
     [ ] Formas de pagamento + planos aceitos
     [ ] Tom de atendimento (formal / descontraído)
-    [ ] Login Google Ads (solicitar por ligação, nunca WhatsApp)
-    [ ] Acesso ao Meta Business Manager
-    [ ] Domínio registrado no nome do cliente (registro.br)
+    [ ] Domínio desejado (Frank registra no registro.br em nome do cliente)
 
-[ ] Pagamento recebido (setup R$2.000 + 1ª mensalidade R$3.500)
-[ ] Contrato assinado
-[ ] Card criado no NossoCRM (board de prospecção → ✅ Fechado)
+[ ] FRAN — Acesso a contas de ads (solicitado por ligação, nunca WhatsApp):
+    [ ] Convidar frank@vaianuncioai.com como admin no Meta Business Manager do cliente
+    [ ] Convidar frank@vaianuncioai.com como admin no Google Ads do cliente
+         (ou criar contas novas caso o cliente não tenha)
+
+[ ] FRAN — Comercial:
+    [ ] Pagamento recebido (setup R$2.000 + 1ª mensalidade R$3.500)
+    [ ] Contrato assinado
+    [ ] Card criado no NossoCRM de prospecção → ✅ Fechado
+
+[ ] SPIKE — Setup automático iniciado (após tokens configurados):
+    [ ] Informar Spike: "Novo cliente — [Nome] — nicho [X] — WA: [número]"
+    → Spike cria: Supabase project + Vercel deploy + NossoCRM configurado
+    → Spike entrega: URL do CRM + login + senha
 ```
 
 ---
@@ -151,35 +183,41 @@
 
 ## DIA 4 — NossoCRM + Webhooks + Teste Completo (~3h)
 
-**BLOCO H — NossoCRM (45 min)**
+**BLOCO H — NossoCRM (executado por SPIKE via API — ~10 min)**
 ```
-[ ] Deploy do NossoCRM para o cliente:
-    [ ] Supabase: novo projeto (supabase.com → São Paulo)
-    [ ] Vercel: importar frank4g-ux/nossocrm → aguardar build
-    [ ] Acessar [url].vercel.app/install → wizard:
-        Capítulo 1: nome, email, senha do cliente
-        Capítulo 2: token Vercel
-        Capítulo 3: URL + token Supabase
+→ Spike executa automaticamente ao receber: nome do cliente + nicho
 
-[ ] Criar board "Pipeline Clínica":
-    🟡 Novo Lead → 📞 Tentativa de Contato → 💬 Em Conversa
-    → 📅 Consulta Agendada → ✅ Fechado → ❌ Perdido
+[ ] SPIKE — Deploy automático:
+    1. Criar projeto Supabase na conta VaiAnuncio via Management API
+       (região: São Paulo | nome: crm-[nome-cliente])
+    2. Criar projeto Vercel na conta VaiAnuncio via API
+       (fork frank4g-ux/nossocrm | nome: crm-[nome-cliente])
+    3. Rodar wizard via API: nome, email, senha do cliente
+    4. Criar board "Pipeline Clínica":
+       🟡 Novo Lead → 📞 Tentativa de Contato → 💬 Em Conversa
+       → 📅 Consulta Agendada → ✅ Fechado → ❌ Perdido
+    5. Gerar API Key do NossoCRM
+    6. Ativar Gemini IA (aistudio → Get API Key → colar em Configurações → IA)
 
-[ ] Gerar API Key: Configurações → API → Gerar nova chave
-[ ] Copiar board_key do pipeline criado
-[ ] Ativar Gemini IA: aistudio.google.com → Get API Key → colar em Configurações → IA
+→ Spike entrega para Fran:
+   URL: https://crm-[cliente].vercel.app
+   Login: [email]
+   Senha: [senha temporária]
+   API Key: ncrm_xxxx
+   Board Key: [chave]
 ```
 
-**BLOCO I — Webhook Sofia → CRM (30 min)**
+**BLOCO I — Webhook Sofia → CRM (executado por SPIKE — ~10 min)**
 ```
-[ ] Vercel → New Project → importar sofia-webhook-template/
-[ ] Configurar env vars:
-    NOSSOCRM_URL     = https://[crm-cliente].vercel.app
-    NOSSOCRM_API_KEY = ncrm_xxxx (gerado no passo H)
-    BOARD_KEY        = [board_key copiada no passo H]
-    SOFIA_SECRET     = [gerar uma string aleatória]
-[ ] Deploy → copiar URL da function (ex: sofia-webhook-cliente.vercel.app/api/webhook)
-[ ] No GPTMaker → configurar webhook do agente com essa URL + secret
+[ ] SPIKE — Deploy automático do webhook:
+    1. Vercel → New Project → importar sofia-webhook-template/ (conta VaiAnuncio)
+    2. Configurar env vars:
+       NOSSOCRM_URL     = https://crm-[cliente].vercel.app
+       NOSSOCRM_API_KEY = ncrm_xxxx (gerado no Bloco H)
+       BOARD_KEY        = [board_key do Bloco H]
+       SOFIA_SECRET     = [string aleatória gerada por Spike]
+    3. Deploy → copiar URL gerada
+    4. GPTMaker PUT /v2/agent/{id}/webhooks → onCreateEvent = URL gerada
 ```
 
 **BLOCO J — Teste Completo (45 min)**

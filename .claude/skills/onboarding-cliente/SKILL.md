@@ -588,16 +588,22 @@ MÊS 3 — CRM (PACOTE GROWTH)
 
   PASSO A PASSO DE IMPLANTAÇÃO DO CRM:
 
-  1. INFRAESTRUTURA (15 min)
-     → Criar projeto no Supabase (supabase.com → New project → São Paulo)
-     → Criar projeto no Vercel importando frank4g-ux/nossocrm
-     → Aguardar build finalizar
+  EXECUTADO POR SPIKE (automático via API) — ~10 min:
+  Fran informa: "Novo cliente CRM — [Nome] — [nicho]"
 
-  2. WIZARD DE INSTALAÇÃO (5 min)
-     → Acessar [url-cliente].vercel.app/install
-     → Capítulo 1: nome, email e senha do cliente
-     → Capítulo 2: token Vercel (sua conta)
-     → Capítulo 3: URL + token do Supabase criado no passo 1
+  1. INFRAESTRUTURA (Spike via API)
+     → Spike cria projeto no Supabase na conta VaiAnuncio (região São Paulo)
+     → Spike cria projeto no Vercel na conta VaiAnuncio (importa frank4g-ux/nossocrm)
+     → Spike aguarda build e entrega URL + credenciais para Fran
+
+  2. WIZARD DE INSTALAÇÃO (Spike via API)
+     → Spike acessa [url-cliente].vercel.app/install programaticamente
+     → Configura: nome, email e senha do cliente
+     → Usa tokens VaiAnuncio (Vercel + Supabase) — armazenados com Spike
+
+  ⚠️ PRÉ-REQUISITO (configurar uma vez com Frank):
+     Vercel API Token   → vercel.com/account/tokens
+     Supabase Mgmt API → supabase.com/dashboard/account/tokens
 
   3. PIPELINE ODONTO (10 min)
      → Boards → Criar Board → Começar do zero
@@ -778,44 +784,52 @@ SE você tiver 3+ clientes simultâneos
 
 ## CRONOGRAMA RESUMIDO
 
+> **Fran** = comercial, relacionamento, kickoff, relatórios
+> **Spike** = todo o técnico: deploy, configuração, tracking, webhooks
+> **Cliente** = APENAS escanear QR Code do WhatsApp (único touchpoint técnico)
+>
+> **Infraestrutura:** conta VaiAnuncio (Vercel + Supabase de Frank)
+> **Deploy automático:** Spike executa via API — pendente Vercel Token + Supabase Token
+
 ### Starter (R$1.500/mês)
 | Dia | Quem | O que faz |
 |-----|------|-----------|
 | 0 | Fran | Fechamento + contrato + pagamento |
 | 0 | Fran | Mensagem de boas-vindas imediata (WhatsApp) |
 | 1 | Fran | Kickoff (NEPQ + briefing + alinhamento de expectativa) |
-| 1 | Fran/Rodrigo/Kauan | Os 4 números calculados |
-| 1-2 | Fran | LP criada via /web-designer + deploy via /site |
-| 3-4 | Fran/Kauan/Rodrigo | Campanha estruturada + revisão |
-| 5 | Fran | Go live + mensagem de confirmação |
-| 7 | Fran | Check de dados (não otimiza ainda) |
-| 14 | Fran | Primeira otimização |
-| Toda segunda | Fran | Relatório WhatsApp semanal |
+| 1 | Fran+Spike | Os 4 números calculados |
+| 1-2 | Spike | LP criada via /web-designer + deploy via /site |
+| 2 | Fran | Aprovação da LP com cliente (WhatsApp, máx 24h) |
+| 2-3 | Spike | GTM + Pixel + GA4 instalados e validados |
+| 3-4 | Spike+Kauan/Rodrigo | Campanha estruturada (Google OU Meta) |
+| 5 | Fran+Spike | Go live + mensagem de confirmação |
+| 7 | Spike | Check de dados (não otimiza ainda) |
+| 14 | Spike | Primeira otimização |
+| Toda terça | Fran | Relatório WhatsApp semanal |
 | 30 | Fran | Relatório completo + Reunião Dia 30 + upsell IA |
 
 ### Growth (R$2.500/mês) — tudo do Starter +
 | Dia | Quem | O que faz |
 |-----|------|-----------|
-| 1-2 | Fran | Criar CRM (Supabase + Vercel + wizard) |
-| 2 | Fran | Pipeline odonto configurado (6 colunas) |
+| 1-2 | Spike | Deploy CRM (Supabase + Vercel na conta VaiAnuncio) automático |
+| 2 | Spike | Pipeline odonto configurado (6 colunas) + Gemini IA ativo |
 | 3 | Fran | Treinar recepcionista no CRM (1h online) |
-| 3 | Fran | Ativar Gemini IA no CRM (2 min, grátis) |
-| 3-4 | Fran/Kauan/Rodrigo | Google Ads + Meta Ads estruturados |
-| 5 | Fran | Go live tudo junto: ambas campanhas + CRM |
+| 3-4 | Spike+Kauan/Rodrigo | Google Ads + Meta Ads estruturados |
+| 5 | Fran+Spike | Go live tudo junto: campanhas + CRM |
 | Toda terça | Fran | Relatório WhatsApp semanal |
 | Dia 15 e 30 | Fran | Reunião quinzenal (30 min — revisar leads, CRM, próximos 15 dias) |
 
 ### Máquina (R$3.500/mês) — tudo do Growth +
 | Dia | Quem | O que faz |
 |-----|------|-----------|
-| 1 | Fran | Criar agente Sofia no GPTMaker via /gptmaker |
-| 1 | Fran | Configurar modelo (Claude Sonnet), settings e webhooks |
-| 2 | Fran | Montar behavior com dados do kickoff |
-| 2 | Fran | Inserir jobSite (URL da LP do cliente) |
-| 3 | Fran | Conectar Sofia ao WhatsApp Business do cliente |
-| 3 | Fran | Treinamento adicional Q&A (interface web) |
-| 4 | Fran | Teste completo: simular lead do anúncio até card no CRM |
-| 5 | Fran | Go live tudo junto: Google Ads + Meta Ads + Sofia + CRM |
+| 1 | Spike | Criar agente Sofia no GPTMaker via /gptmaker |
+| 1 | Spike | Configurar modelo (Claude Sonnet), settings |
+| 2 | Spike | Montar behavior com dados do kickoff |
+| 2 | Spike | Inserir jobSite (URL da LP do cliente) |
+| 3 | **Cliente** | **Escanear QR Code → conectar WhatsApp Business** |
+| 3 | Spike | Treinamento adicional Q&A |
+| 4 | Spike | Deploy webhook Sofia→CRM + Teste completo |
+| 5 | Fran+Spike | Go live: Google Ads + Meta Ads + Sofia + CRM |
 | Toda terça | Fran | Relatório WhatsApp semanal |
 | Dia 15 e 30 | Fran | Reunião quinzenal (30 min — leads, Sofia, CRM, próximos 15 dias) |
 
